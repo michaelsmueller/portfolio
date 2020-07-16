@@ -179,6 +179,7 @@ export default ({ data }) => {
 
     return (
         <Layout>
+        foo
             <RenderBody home={doc.node} projects={projects} meta={meta}/>
         </Layout>
     )

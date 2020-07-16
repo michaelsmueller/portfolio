@@ -31,17 +31,19 @@ const LayoutContainer = styled.div`
     }
 `;
 
+const query = graphql`
+    query SiteTitleQuery {
+        site {
+            siteMetadata {
+                title
+            }
+        }
+    }
+`
+
 const Layout = ({ children }) => (
     <StaticQuery
-        query={graphql`
-            query SiteTitleQuery {
-                site {
-                    siteMetadata {
-                        title
-                    }
-                }
-            }
-        `}
+        query={`${query}`}
         render={data => (
             <LayoutContainer className="div">
                 <Global styles={[globalStyles, typeStyles]} />
