@@ -13,7 +13,7 @@ const FooterContainer = styled("div")`
     align-items: center;
 
     svg {
-        max-width: 50px;
+        max-width: 200px;
     }
 `
 
