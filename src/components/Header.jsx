@@ -1,21 +1,28 @@
-import React from "react";
-import { Link } from "gatsby";
-import styled from "@emotion/styled";
-import colors from "styles/colors";
-import dimensions from "styles/dimensions";
-import Logo from "components/_ui/Logo";
+import React from 'react';
+import { Link } from 'gatsby';
+import styled from '@emotion/styled';
+import colors from 'styles/colors';
+import dimensions from 'styles/dimensions';
+import Logo from 'components/_ui/Logo';
 
-const HeaderContainer = styled("div")`
+const HeaderContainer = styled('div')`
     padding-top: 3.75em;
     padding-bottom: 3em;
-`
+`;
 
-const HeaderContent = styled("div")`
+const HeaderContent = styled('div')`
     display: flex;
     justify-content: space-between;
-`
+`;
 
-const HeaderLinks = styled("div")`
+const LogoContainer = styled('div')`
+    svg {
+        max-width: 30vw;
+        min-width: 150px;
+    }
+`;
+
+const HeaderLinks = styled('div')`
     display: grid;
     grid-template-columns: repeat(2, auto);
     grid-gap: 7em;
@@ -23,13 +30,8 @@ const HeaderLinks = styled("div")`
     width: 100%;
     max-width: 200px;
 
-    @media(max-width: ${dimensions.maxwidthTablet}px) {
-        grid-gap: 5.5em;
-    }
-
-    @media(max-width: ${dimensions.maxwidthMobile}px) {
-        grid-gap: 2.5em;
-    }
+    @media(max-width: ${dimensions.maxwidthTablet}px) { grid-gap: 5.5em }
+    @media(max-width: ${dimensions.maxwidthMobile}px) { grid-gap: 2.5em }
 
     a {
         color: currentColor;
@@ -45,20 +47,20 @@ const HeaderLinks = styled("div")`
 
         &:after {
             position: absolute;
-            content: "";
+            content: '';
             bottom: 0;
-            width: 18px;
+            width: 30px;
             height: 3px;
             background: transparent;
-            bottom: -3px;
+            bottom: 0px;
             right: 50%;
-            margin-right: -9px;
+            margin-right: -15px;
             transition: 100ms ease-in-out background;
         }
 
         &:hover {
             &:after {
-                background: ${colors.blue500};
+                background: ${colors.magenta300};
                 transition: 100ms ease-in-out background;
             }
         }
@@ -70,28 +72,23 @@ const HeaderLinks = styled("div")`
             }
         }
     }
-`
+`;
 
 const Header = () => (
     <HeaderContainer>
         <HeaderContent>
-            <Link to="/">
-                <Logo/>
-            </Link>
+            <LogoContainer><Link to='/'><Logo/></Link></LogoContainer>
             <HeaderLinks>
-                <Link
-                    activeClassName="Link--is-active"
-                    to="/work">
-                    Work
-                </Link>
-                <Link
-                    activeClassName="Link--is-active"
-                    to="/blog">
+                <Link activeClassName='Link--is-active' to='/work'>Work</Link>
+                {/* <Link
+                    activeClassName='Link--is-active'
+                    to='/blog'>
                     Blog
-                </Link>
+                </Link> */}
+                <a href='mailto:hello@michaelmueller.dev'>Contact</a>
             </HeaderLinks>
         </HeaderContent>
     </HeaderContainer>
-)
+);
 
 export default Header;

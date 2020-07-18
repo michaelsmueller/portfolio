@@ -149,7 +149,7 @@ const ProjectCardImageContainer = styled("div")`
     img {
         max-width: 400px;
         width: 100%;
-        box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.04);
+        box-shadow: 0px 4px 24px rgba(0, 0, 0, 0);
 
         @media(max-width:${dimensions.maxwidthTablet}px) {
             max-width: 300px;

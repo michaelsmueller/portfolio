@@ -11,7 +11,7 @@ const ButtonContainer = styled("button")`
     outline: none;
     border: none;
     font-size: 1rem;
-    border-radius: 2px;
+    border-radius: 30px;
     position: relative;
     transition: background 100ms ease-in-out;
 
@@ -31,7 +31,8 @@ const ButtonContainer = styled("button")`
         top: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, ${colors.pink400} 0%, ${colors.purple400} 100%);
+        border-radius: 30px;
+        background: linear-gradient(135deg, ${colors.magenta200} 0%, ${colors.purple400} 100%);
         z-index: -1;
     }
 
