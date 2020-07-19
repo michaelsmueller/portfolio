@@ -1,11 +1,11 @@
-import React from "react";
-import Button from "components/_ui/Button";
-import styled from "@emotion/styled";
-import dimensions from "styles/dimensions";
-import { RichText } from "prismic-reactjs";
-import PropTypes from "prop-types";
+import React from 'react';
+import Button from 'components/_ui/Button';
+import styled from '@emotion/styled';
+import dimensions from 'styles/dimensions';
+import { RichText } from 'prismic-reactjs';
+import PropTypes from 'prop-types';
 
-const AboutContainer = styled("div")`
+const AboutContainer = styled('div')`
     padding-top: 1em;
     display: grid;
     grid-template-columns: 8em 1fr 8em;
@@ -22,7 +22,7 @@ const AboutContainer = styled("div")`
     }
 `
 
-const AboutLinkContainer = styled("div")`
+const AboutLinkContainer = styled('div')`
     padding-top: 1em;
     padding-bottom: 3em;
     display: flex;
@@ -31,9 +31,9 @@ const AboutLinkContainer = styled("div")`
     @media(max-width: ${dimensions.maxwidthMobile}px) {
         grid-row: 2;
     }
-`
+`;
 
-const AboutLink = styled("a")`
+const AboutLink = styled('a')`
     margin-bottom: 1.5em;
     font-weight: 600;
     line-height: 1.9;
@@ -55,30 +55,27 @@ const AboutLink = styled("a")`
             transition: all 150ms ease-in-out;
         }
     }
-`
+`;
 
-const AboutBio = styled("div")`
+const AboutBio = styled('div')`
     padding-bottom: 3em;
     max-width: 480px;
-
 
     @media(max-width: ${dimensions.maxwidthMobile}px) {
         grid-row: 2;
     }
-`
+`;
 
-const AboutActions = styled("div")`
+const AboutActions = styled('div')`
     padding-top: 1em;
     padding-bottom: 3em;
-
 
     @media(max-width: ${dimensions.maxwidthMobile}px) {
         padding: 0;
         grid-column: 1 / -1;
         grid-row: 1;
     }
-`
-
+`;
 
 const About = ({ bio, socialLinks }) => (
     <AboutContainer>
@@ -87,24 +84,20 @@ const About = ({ bio, socialLinks }) => (
                 <AboutLink
                     key={i}
                     href={social.about_link[0].spans[0].data.url}
-                    target="_blank" rel="noopener noreferrer">
+                    target='_blank' rel='noopener noreferrer'>
                     {social.about_link[0].text}
                     <span>&#8594;</span>
                 </AboutLink>
             ))}
         </AboutLinkContainer>
-        <AboutBio>
-            {RichText.render(bio)}
-        </AboutBio>
+        <AboutBio>{RichText.render(bio)}</AboutBio>
         <AboutActions>
-            <a href="mailto:marguerite.roth@gmail.com" target="_blank" rel="noopener noreferrer">
-                <Button className="Button--secondary">
-                    Email me
-                </Button>
+            <a href='mailto:michael@michaelmueller.dev' target='_blank' rel='noopener noreferrer'>
+                <Button className='Button--secondary'>Email me</Button>
             </a>
         </AboutActions>
     </AboutContainer>
-)
+);
 
 export default About;
 

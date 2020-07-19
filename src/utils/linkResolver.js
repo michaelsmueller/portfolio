@@ -4,9 +4,9 @@
 
 exports.linkResolver = function linkResolver(doc) {
     // Route for blog posts
-    if (doc.type === 'Post') {
-        return '/blog/' + doc.uid;
-    }
+    // if (doc.type === 'Post') {
+    //     return '/blog/' + doc.uid;
+    // }
 
     // Homepage route fallback
     return '/';

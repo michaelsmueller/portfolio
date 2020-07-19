@@ -1,17 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Helmet from "react-helmet";
-import { RichText } from "prismic-reactjs";
-import { graphql, Link } from "gatsby";
-import styled from "@emotion/styled";
-import colors from "styles/colors";
-import dimensions from "styles/dimensions";
-import Button from "components/_ui/Button";
-import About from "components/About";
-import Layout from "components/Layout";
-import ProjectCard from "components/ProjectCard";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
+import { RichText } from 'prismic-reactjs';
+import { graphql, Link } from 'gatsby';
+import styled from '@emotion/styled';
+import colors from 'styles/colors';
+import dimensions from 'styles/dimensions';
+import Button from 'components/_ui/Button';
+import About from 'components/About';
+import Layout from 'components/Layout';
+import ProjectCard from 'components/ProjectCard';
 
-const Hero = styled("div")`
+const Hero = styled('div')`
     padding-top: 2.5em;
     padding-bottom: 3em;
     margin-bottom: 6em;
@@ -47,9 +47,9 @@ const Hero = styled("div")`
             }
         }
     }
-`
+`;
 
-const Section = styled("div")`
+const Section = styled('div')`
     margin-bottom: 10em;
     display: flex;
     flex-direction: column;
@@ -61,7 +61,7 @@ const Section = styled("div")`
     &:last-of-type {
         margin-bottom: 0;
     }
-`
+`;
 
 const WorkAction = styled(Link)`
     font-weight: 600;
@@ -91,7 +91,7 @@ const WorkAction = styled(Link)`
             transition: transform 150ms ease-in-out;
         }
     }
-`
+`;
 
 const RenderBody = ({ home, projects, meta }) => (
     <>
@@ -138,7 +138,7 @@ const RenderBody = ({ home, projects, meta }) => (
                 {RichText.render(home.hero_title)}
             </>
             <a href={home.hero_button_link.url}
-               target="_blank" rel="noopener noreferrer">
+               target='_blank' rel='noopener noreferrer'>
                 <Button>
                     {RichText.render(home.hero_button_text)}
                 </Button>
@@ -155,7 +155,7 @@ const RenderBody = ({ home, projects, meta }) => (
                     uid={project.node._meta.uid}
                 />
             ))}
-            <WorkAction to={"/work"}>
+            <WorkAction to={'/work'}>
                 See more work <span>&#8594;</span>
             </WorkAction>
         </Section>
@@ -170,7 +170,7 @@ const RenderBody = ({ home, projects, meta }) => (
 );
 
 export default ({ data }) => {
-    //Required check for no data being returned
+    // Required check for no data being returned
     const doc = data.prismic.allHomepages.edges.slice(0, 1).pop();
     const projects = data.prismic.allProjects.edges;
     const meta = data.site.siteMetadata;
@@ -182,7 +182,7 @@ export default ({ data }) => {
             <RenderBody home={doc.node} projects={projects} meta={meta}/>
         </Layout>
     )
-}
+};
 
 RenderBody.propTypes = {
     home: PropTypes.object.isRequired,
@@ -213,7 +213,7 @@ export const query = graphql`
                     }
                 }
             }
-            allProjects {
+            allProjects(sortBy: project_post_date_DESC) {
                 edges {
                     node {
                         project_title
@@ -236,4 +236,4 @@ export const query = graphql`
             }
         }
     }
-`
+`;
