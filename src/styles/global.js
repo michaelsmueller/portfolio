@@ -1,4 +1,4 @@
-import css from "@emotion/css";
+import css from '@emotion/css';
 import colors from 'styles/colors';
 import dimensions from 'styles/dimensions';
 
@@ -41,7 +41,7 @@ const globalStyles = css`
     Reach Router issue here: https: //github.com/reach/router/issues/63
     */
     #___gatsby,
-    div[role="group"][tabindex] {
+    div[role='group'][tabindex] {
         height: 100%;
         min-height: 100% !important;
     }

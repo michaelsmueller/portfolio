@@ -1,3 +1,7 @@
+require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
+
+console.log('environmental variable', process.env.ENABLE_GATSBY_REFRESH_ENDPOINT);
+
 module.exports = {
   siteMetadata: {
     title: `Michael Mueller | Web developer & financial advisor`,
