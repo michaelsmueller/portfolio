@@ -1,14 +1,14 @@
 import React from 'react';
-import PropTypes from "prop-types";
-import Helmet from "react-helmet";
+import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
 import Moment from 'react-moment';
 import { graphql } from 'gatsby';
-import { RichText } from "prismic-reactjs";
-import styled from "@emotion/styled";
-import colors from "styles/colors";
-import Layout from "components/Layout";
+import { RichText } from 'prismic-reactjs';
+import styled from '@emotion/styled';
+import colors from 'styles/colors';
+import Layout from 'components/Layout';
 
-const PostHeroContainer = styled("div")`
+const PostHeroContainer = styled('div')`
     max-height: 500px;
     overflow: hidden;
     display: flex;
@@ -19,9 +19,9 @@ const PostHeroContainer = styled("div")`
     img {
         width: 100%;
     }
-`
+`;
 
-const PostHeroAnnotation = styled("div")`
+const PostHeroAnnotation = styled('div')`
     padding-top: 0.25em;
 
     h6 {
@@ -34,9 +34,9 @@ const PostHeroAnnotation = styled("div")`
     a {
         color: currentColor;
     }
-`
+`;
 
-const PostCategory = styled("div")`
+const PostCategory = styled('div')`
     max-width: 550px;
     margin: 0 auto;
     text-align: center;
@@ -47,9 +47,9 @@ const PostCategory = styled("div")`
         margin-top: 0;
         margin-bottom: 1em;
     }
-`
+`;
 
-const PostTitle = styled("div")`
+const PostTitle = styled('div')`
     max-width: 550px;
     margin: 0 auto;
     text-align: center;
@@ -57,9 +57,9 @@ const PostTitle = styled("div")`
     h1 {
         margin-top: 0;
     }
-`
+`;
 
-const PostBody = styled("div")`
+const PostBody = styled('div')`
     max-width: 550px;
     margin: 0 auto;
 
@@ -70,9 +70,9 @@ const PostBody = styled("div")`
             width: 100%;
         }
     }
-`
+`;
 
-const PostMetas = styled("div")`
+const PostMetas = styled('div')`
     max-width: 550px;
     margin: 0 auto;
     display: flex;
@@ -81,21 +81,21 @@ const PostMetas = styled("div")`
     justify-content: space-between;
     font-size: 0.85em;
     color: ${colors.grey600};
-`
+`;
 
-const PostAuthor = styled("div")`
+const PostAuthor = styled('div')`
     margin: 0;
-`
+`;
 
-const PostDate = styled("div")`
+const PostDate = styled('div')`
     margin: 0;
-`
+`;
 
 const Post = ({ post, meta }) => {
     return (
         <>
             <Helmet
-                title={`${post.post_title[0].text} | Prist, Gatsby & Prismic Starter`}
+                title={`${post.post_title[0].text} | Michael Mueller, web developer & financial advisor`}
                 titleTemplate={`%s | ${meta.title}`}
                 meta={[
                     {
@@ -104,7 +104,7 @@ const Post = ({ post, meta }) => {
                     },
                     {
                         property: `og:title`,
-                        content: `${post.post_title[0].text} | Prist, Gatsby & Prismic Starter`,
+                        content: `${post.post_title[0].text} | Michael Mueller, web developer & financial advisor`,
                     },
                     {
                         property: `og:description`,
@@ -144,12 +144,12 @@ const Post = ({ post, meta }) => {
                         {post.post_author}
                     </PostAuthor>
                     <PostDate>
-                        <Moment format="MMMM D, YYYY">{post.post_date}</Moment>
+                        <Moment format='MMMM D, YYYY'>{post.post_date}</Moment>
                     </PostDate>
                 </PostMetas>
                     {post.post_hero_image && (
                     <PostHeroContainer>
-                        <img src={post.post_hero_image.url} alt="bees" />
+                        <img src={post.post_hero_image.url} alt='bees' />
                         <PostHeroAnnotation>
                             {RichText.render(post.post_hero_annotation)}
                         </PostHeroAnnotation>
@@ -161,7 +161,7 @@ const Post = ({ post, meta }) => {
             </Layout>
         </>
     )
-}
+};
 
 export default ({ data }) => {
     const postContent = data.prismic.allPosts.edges[0].node;
@@ -169,7 +169,7 @@ export default ({ data }) => {
     return (
         <Post post={postContent} meta={meta}/>
     )
-}
+};
 
 Post.propTypes = {
     post: PropTypes.object.isRequired,
@@ -205,4 +205,4 @@ export const query = graphql`
             }
         }
     }
-`
+`;

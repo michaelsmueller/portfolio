@@ -1,13 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { StaticQuery, graphql } from "gatsby";
-import styled from "@emotion/styled";
-import { Global } from "@emotion/core";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StaticQuery, graphql } from 'gatsby';
+import styled from '@emotion/styled';
+import { Global } from '@emotion/core';
 import globalStyles from 'styles/global';
 import typeStyles from 'styles/typography';
-import dimensions from "styles/dimensions";
-import Footer from "components/Footer";
-import Header from "components/Header";
+import dimensions from 'styles/dimensions';
+import Footer from 'components/Footer';
+import Header from 'components/Header';
 import 'styles/fonts.scss';
 
 const LayoutContainer = styled.div`
@@ -39,17 +39,17 @@ const query = graphql`
             }
         }
     }
-`
+`;
 
 const Layout = ({ children }) => (
     <StaticQuery
         query={`${query}`}
         render={data => (
-            <LayoutContainer className="div">
+            <LayoutContainer className='div'>
                 <Global styles={[globalStyles, typeStyles]} />
-                <div className="Layout">
+                <div className='Layout'>
                     <Header />
-                    <main className="Layout__content">
+                    <main className='Layout__content'>
                         {children}
                     </main>
                     <Footer />

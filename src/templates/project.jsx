@@ -1,14 +1,14 @@
 import React from 'react';
-import PropTypes from "prop-types";
-import Helmet from "react-helmet";
-import styled from "@emotion/styled";
-import colors from "styles/colors";
+import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
+import styled from '@emotion/styled';
+import colors from 'styles/colors';
 import { Link, graphql } from 'gatsby';
-import { RichText } from "prismic-reactjs";
-import Button from "components/_ui/Button";
-import Layout from "components/Layout";
+import { RichText } from 'prismic-reactjs';
+import Button from 'components/_ui/Button';
+import Layout from 'components/Layout';
 
-const ProjectHeroContainer = styled("div")`
+const ProjectHeroContainer = styled('div')`
     background: ${colors.grey200};
     display: flex;
     justify-content: center;
@@ -21,15 +21,15 @@ const ProjectHeroContainer = styled("div")`
     img {
         max-width: 600px;
     }
-`
+`;
 
-const ProjectTitle = styled("div") `
+const ProjectTitle = styled('div') `
     max-width: 550px;
     margin: 0 auto;
     text-align: center;
-`
+`;
 
-const ProjectBody = styled("div")`
+const ProjectBody = styled('div')`
     max-width: 550px;
     margin: 0 auto;
 
@@ -40,20 +40,19 @@ const ProjectBody = styled("div")`
             width: 100%;
         }
     }
-`
+`;
 
 const WorkLink = styled(Link)`
     margin-top: 3em;
     display: block;
     text-align: center;
-`
-
+`;
 
 const Project = ({ project, meta }) => {
     return (
         <>
             <Helmet
-                title={`${project.project_title[0].text} | Prist, Gatsby & Prismic Starter`}
+                title={`${project.project_title[0].text} | Michael Mueller, web developer & financial advisor`}
                 titleTemplate={`%s | ${meta.title}`}
                 meta={[
                     {
@@ -62,7 +61,7 @@ const Project = ({ project, meta }) => {
                     },
                     {
                         property: `og:title`,
-                        content: `${project.project_title[0].text} | Prist, Gatsby & Prismic Starter`,
+                        content: `${project.project_title[0].text} | Michael Mueller, web developer & financial advisor`,
                     },
                     {
                         property: `og:description`,
@@ -96,13 +95,13 @@ const Project = ({ project, meta }) => {
                 </ProjectTitle>
                 {project.project_hero_image && (
                     <ProjectHeroContainer>
-                        <img src={project.project_hero_image.url} alt="bees" />
+                        <img src={project.project_hero_image.url} alt='bees' />
                     </ProjectHeroContainer>
                 )}
                 <ProjectBody>
                     {RichText.render(project.project_description)}
-                    <WorkLink to={"/work"}>
-                        <Button className="Button--secondary">
+                    <WorkLink to={'/work'}>
+                        <Button className='Button--secondary'>
                             See other work
                         </Button>
                     </WorkLink>
@@ -110,7 +109,7 @@ const Project = ({ project, meta }) => {
             </Layout>
         </>
     )
-}
+};
 
 export default ({ data }) => {
     const projectContent = data.prismic.allProjects.edges[0].node;
@@ -118,7 +117,7 @@ export default ({ data }) => {
     return (
         <Project project={projectContent} meta={meta}/>
     )
-}
+};
 
 Project.propTypes = {
     project: PropTypes.object.isRequired,
@@ -152,4 +151,4 @@ export const query = graphql`
             }
         }
     }
-`
+`;

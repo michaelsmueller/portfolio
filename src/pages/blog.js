@@ -1,17 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Helmet from "react-helmet";
-import { graphql } from "gatsby";
-import styled from "@emotion/styled";
-import dimensions from "styles/dimensions";
-import Layout from "components/Layout";
-import PostCard from "components/PostCard";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
+import { graphql } from 'gatsby';
+import styled from '@emotion/styled';
+import dimensions from 'styles/dimensions';
+import Layout from 'components/Layout';
+import PostCard from 'components/PostCard';
 
-const BlogTitle = styled("h1")`
+const BlogTitle = styled('h1')`
     margin-bottom: 1em;
-`
+`;
 
-const BlogGrid = styled("div")`
+const BlogGrid = styled('div')`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2.5em;
@@ -25,13 +25,13 @@ const BlogGrid = styled("div")`
         grid-template-columns: 1fr;
         grid-gap: 2.5em;
     }
-`
+`;
 
 const Blog = ({ posts, meta }) => (
     <>
         <Helmet
-            title={`Blog | Prist, Gatsby & Prismic Starter`}
-            titleTemplate={`%s | Blog | Prist, Gatsby & Prismic Starter`}
+            title={`Blog | Michael Mueller, web developer & financial advisor`}
+            titleTemplate={`%s | Blog | Michael Mueller, web developer & financial advisor`}
             meta={[
                 {
                     name: `description`,
@@ -39,7 +39,7 @@ const Blog = ({ posts, meta }) => (
                 },
                 {
                     property: `og:title`,
-                    content: `Blog | Prist, Gatsby & Prismic Starter`,
+                    content: `Blog | Michael Mueller, web developer & financial advisor`,
                 },
                 {
                     property: `og:description`,
@@ -103,7 +103,6 @@ Blog.propTypes = {
     meta: PropTypes.object.isRequired,
 };
 
-
 export const query = graphql`
     {
         prismic {
@@ -130,5 +129,5 @@ export const query = graphql`
             }
         }
     }
-`
+`;
 

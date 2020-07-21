@@ -67,6 +67,6 @@ const typeStyles = css`
         line-height: 1.4em;
         font-size: 0.8rem;
     }
-`
+`;
 
 export default typeStyles;

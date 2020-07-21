@@ -1,11 +1,9 @@
 require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
 
-console.log('environmental variable', process.env.ENABLE_GATSBY_REFRESH_ENDPOINT);
-
 module.exports = {
   siteMetadata: {
     title: `Michael Mueller | Web developer & financial advisor`,
-        description: `My work portfolio and blog.`,
+        description: `My work portfolio.`,
     author: `Michael Mueller | michaelmueller.dev`,
   },
   plugins: [
@@ -30,7 +28,7 @@ module.exports = {
     {
         resolve: '@prismicio/gatsby-source-prismic-graphql',
         options: {
-            repositoryName: 'michael-portfolio', // (REQUIRED, replace with your own)
+            repositoryName: 'michael-portfolio',
             linkResolver: () => post => `/${post.uid}`,
         }
     },
@@ -50,7 +48,7 @@ module.exports = {
     {
         resolve: `gatsby-plugin-google-analytics`,
         options: {
-            trackingId: "YOUR_GOOGLE_ANALYTICS_TRACKING_ID",
+            trackingId: 'YOUR_GOOGLE_ANALYTICS_TRACKING_ID',
             head: true,
         },
     },
@@ -58,4 +56,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};

@@ -1,20 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Helmet from "react-helmet";
-import { graphql } from "gatsby";
-import styled from "@emotion/styled";
-import Layout from "components/Layout";
-import ProjectCard from "components/ProjectCard";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
+import { graphql } from 'gatsby';
+import styled from '@emotion/styled';
+import Layout from 'components/Layout';
+import ProjectCard from 'components/ProjectCard';
 
-const WorkTitle = styled("h1")`
+const WorkTitle = styled('h1')`
     margin-bottom: 1em;
-`
+`;
 
 const Work = ({ projects, meta }) => (
     <>
         <Helmet
-            title={`Work | Prist, Gatsby & Prismic Starter`}
-            titleTemplate={`%s | Work | Prist, Gatsby & Prismic Starter`}
+            title={`Work | Michael Mueller, web developer & financial advisor`}
+            titleTemplate={`%s | Work | Michael Mueller, web developer & financial advisor`}
             meta={[
                 {
                     name: `description`,
@@ -22,7 +22,7 @@ const Work = ({ projects, meta }) => (
                 },
                 {
                     property: `og:title`,
-                    content: `Work | Prist, Gatsby & Prismic Starter`,
+                    content: `Work | Michael Mueller, web developer & financial advisor`,
                 },
                 {
                     property: `og:description`,
@@ -110,5 +110,4 @@ export const query = graphql`
             }
         }
     }
-`
-
+`;

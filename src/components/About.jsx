@@ -20,7 +20,7 @@ const AboutContainer = styled('div')`
         grid-template-rows: 3em 1fr;
         grid-gap: 2em;
     }
-`
+`;
 
 const AboutLinkContainer = styled('div')`
     padding-top: 1em;

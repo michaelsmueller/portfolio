@@ -24,7 +24,6 @@ const globalStyles = css`
             font-size: 14px;
         }
 
-
         * {
             box-sizing: border-box;
 
@@ -45,6 +44,6 @@ const globalStyles = css`
         height: 100%;
         min-height: 100% !important;
     }
-`
+`;
 
 export default globalStyles;

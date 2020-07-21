@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import styled from "@emotion/styled";
-import colors from "styles/colors";
-import dimensions from "styles/dimensions";
+import styled from '@emotion/styled';
+import colors from 'styles/colors';
+import dimensions from 'styles/dimensions';
 
-const ButtonContainer = styled("button")`
+const ButtonContainer = styled('button')`
     padding: 1em 2em;
     background: ${colors.blue400};
     font-weight: 600;
@@ -25,7 +25,7 @@ const ButtonContainer = styled("button")`
     }
 
     &:before {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         top: 0;
@@ -53,7 +53,7 @@ const ButtonContainer = styled("button")`
             transition: background 100ms ease-in-out;
         }
     }
-`
+`;
 
 class Button extends Component {
     render() {
