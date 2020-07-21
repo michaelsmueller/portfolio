@@ -11,6 +11,10 @@ import Layout from 'components/Layout';
 import htmlSerializer from 'services/html-serializer';
 import Prism from "prismjs";
 
+Prism.hooks.add('before-sanity-check', function (env) {
+    env.code = env.element.innerText;
+});
+
 const ProjectHeroContainer = styled('div')`
     background: ${colors.grey200};
     display: flex;

@@ -14,14 +14,34 @@ const htmlSerializer = function(type, element, content, children, key) {
   switch(type) {
  
     case Elements.preformatted:
-      // props = { className: 'language-css'};
+      
       // return React.createElement('pre', propsWithUniqueKey(props, key), children);
 
       // const codeElement = React.createElement('code', { className: 'language-js' }, children);
       // return React.createElement('pre', null, codeElement);
-
-      return React.createElement('code', { className: 'language-css' }, children);
+      console.log('children', children);
+      // return React.createElement('code', propsWithUniqueKey(props, key), children);
       // return React.createElement('pre', null, codeElement);
+
+      // const newChildren = [];
+      // newChildren[0] = children[0].map((el, i) => {
+      //   console.log(`i ${i}`, el);
+      //   if (typeof el === 'object' && el.type === 'br') {
+      //     // const p = React.createElement('p', propsWithUniqueKey({}, key), null);
+      //     // return p;
+      //   } else return el;
+      // });
+
+      // console.log('newChildren', newChildren);
+
+      console.log('content', content);
+      return (
+        <pre>
+          <code className='language-css'>
+            {children}
+          </code>
+        </pre>
+      )
 
     // Add a class to paragraph elements
     // case Elements.paragraph:
@@ -42,7 +62,7 @@ const htmlSerializer = function(type, element, content, children, key) {
       //   href: element.data.url || linkResolver(element.data)
       // }, targetAttr, relAttr);
       // return React.createElement('a', propsWithUniqueKey(props, key), children);
- 
+
     // Return null to stick with the default behavior
     default: 
       return null;
