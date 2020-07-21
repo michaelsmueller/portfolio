@@ -65,7 +65,7 @@ const typeStyles = css`
         color: rgba(255, 255, 255, 0.9);
         background-color: ${colors.grey900};
         line-height: 1.4em;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 `;
 

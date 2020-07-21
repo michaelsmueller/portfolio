@@ -34,6 +34,10 @@ const globalStyles = css`
         }
     }
 
+    .block-img img[src$='.gif'] {
+        width: 10%;
+    }
+
     /*
     A workaround for forcing accessibility wrappers
     to have a 100% height.

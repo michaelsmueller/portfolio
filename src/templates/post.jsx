@@ -17,7 +17,7 @@ const PostHeroContainer = styled('div')`
     margin-bottom: 3em;
 
     img {
-        width: 100%;
+        max-width: 100%;
     }
 `;
 
@@ -67,7 +67,9 @@ const PostBody = styled('div')`
         margin: 2rem 0;
 
         img {
-            width: 100%;
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
         }
     }
 `;
