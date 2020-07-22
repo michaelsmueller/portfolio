@@ -36,11 +36,9 @@ const htmlSerializer = function(type, element, content, children, key) {
 
       console.log('content', content);
       return (
-        <pre>
           <code className='language-css'>
-            {children}
+              {children}
           </code>
-        </pre>
       )
 
     // Add a class to paragraph elements
