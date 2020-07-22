@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from "react";
+// import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import styled from '@emotion/styled';
@@ -8,34 +8,12 @@ import { Link, graphql } from 'gatsby';
 import { RichText } from 'prismic-reactjs';
 import Button from 'components/_ui/Button';
 import Layout from 'components/Layout';
-import htmlSerializer from 'services/html-serializer';
-import Prism from "prismjs";
-import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace';
-// import Normalizer from 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace';
 
-Prism.hooks.add('before-sanity-check', function (env) {
-    env.code = env.element.innerText;
-});
-
-const language = 'javascript';
-const grammar = Prism.languages[language];
-Prism.hooks.run('before-highlight', { grammar });
-// const highlighted = Prism.highlight(code, grammar, language);
-
-
-// const nw = new Normalizer({
-// 	'remove-trailing': true,
-// 	'remove-indent': true,
-// 	'left-trim': true,
-// 	'right-trim': true,
-// 	/*'break-lines': 80,
-// 	'indent': 2,
-// 	'remove-initial-line-feed': false,
-// 	'tabs-to-spaces': 4,
-// 	'spaces-to-tabs': 4*/
+// import htmlSerializer from 'services/html-serializer';
+// import Prism from 'prismjs';
+// Prism.hooks.add('before-sanity-check', function (env) {
+//     env.code = env.element.innerText;
 // });
-
-// const nw = Prism.plugins.NormalizeWhitespace;
 
 const ProjectHeroContainer = styled('div')`
     background: ${colors.grey200};
@@ -80,11 +58,7 @@ const WorkLink = styled(Link)`
 `;
 
 const Project = ({ project, meta }) => {
-    useEffect(() => {
-        // call the highlightAll() function to style our code blocks
-        Prism.highlightAll()
-      })
-    console.log('project description 41', project.project_description[41]);
+    // useEffect(() => { Prism.highlightAll() });
     return (
         <>
             <Helmet
@@ -135,8 +109,8 @@ const Project = ({ project, meta }) => {
                     </ProjectHeroContainer>
                 )}
                 <ProjectBody>
-                    <RichText render={project.project_description} htmlSerializer={htmlSerializer} />
-                    {/* {RichText.render(project.project_description)} */}
+                    {/* <RichText render={project.project_description} htmlSerializer={htmlSerializer} /> */}
+                    {RichText.render(project.project_description)}
                     <WorkLink to={'/work'}>
                         <Button className='Button--secondary'>
                             See other work
