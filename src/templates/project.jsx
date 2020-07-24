@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import styled from '@emotion/styled';
@@ -10,7 +10,7 @@ import Button from 'components/_ui/Button';
 import Layout from 'components/Layout';
 
 // import htmlSerializer from 'services/html-serializer';
-// import Prism from 'prismjs';
+import Prism from 'prismjs';
 // Prism.hooks.add('before-sanity-check', function (env) {
 //     env.code = env.element.innerText;
 // });
@@ -58,7 +58,7 @@ const WorkLink = styled(Link)`
 `;
 
 const Project = ({ project, meta }) => {
-    // useEffect(() => { Prism.highlightAll() });
+    useEffect(() => { Prism.highlightAll() });
     return (
         <>
             <Helmet
@@ -111,6 +111,11 @@ const Project = ({ project, meta }) => {
                 <ProjectBody>
                     {/* <RichText render={project.project_description} htmlSerializer={htmlSerializer} /> */}
                     {RichText.render(project.project_description)}
+                    <pre>
+                        <code class='language-js'>
+                            {RichText.asText(project.project_description_test)}
+                        </code>
+                    </pre>
                     <WorkLink to={'/work'}>
                         <Button className='Button--secondary'>
                             See other work
@@ -147,6 +152,16 @@ export const query = graphql`
                         project_post_date
                         project_hero_image
                         project_description
+                        project_description_test
+                        body {
+                            ... on PRISMIC_ProjectBodyCode_slice_in_project {
+                              type
+                              fields {
+                                repeatable_code_slice
+                              }
+                            }
+                            __typename
+                        }
                         _meta {
                             uid
                         }
