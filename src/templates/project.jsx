@@ -59,6 +59,18 @@ const WorkLink = styled(Link)`
 
 const Project = ({ project, meta }) => {
     useEffect(() => { Prism.highlightAll() });
+    console.log('project.body', project.body);
+    const bodyContent = project.body.map(slice => {
+        // const codeText = slice.fields[0].repeatable_code_slice[0].text;
+        // console.log('codeText', codeText);
+        // console.log('type of codeText', typeof codeText);
+        return (
+            <>
+                {/* {codeText} */}
+            </>
+        )
+    });
+    console.log('bodyContent', bodyContent);
     return (
         <>
             <Helmet
@@ -112,10 +124,21 @@ const Project = ({ project, meta }) => {
                     {/* <RichText render={project.project_description} htmlSerializer={htmlSerializer} /> */}
                     {RichText.render(project.project_description)}
                     <pre>
-                        <code class='language-js'>
-                            {RichText.asText(project.project_description_test)}
+                        <code className='language-js'>
+                            {bodyContent}
+                            {/* {RichText.asText(project.project_description_test)} */}
                         </code>
                     </pre>
+
+                    {/* {console.log('body', JSON.stringify(project.body, null, 2))} */}
+
+                    {project.body.forEach(slice => {
+                        {/* console.log('slice', JSON.stringify(slice, null, 2)); */}
+                        {/* const codeText = slice.fields[0].repeatable_code_slice[0].text; */}
+                        {/* console.log('code text', codeText); */}
+                        {/* return RichText.asText(codeText); */}
+                    })}
+
                     <WorkLink to={'/work'}>
                         <Button className='Button--secondary'>
                             See other work
@@ -155,10 +178,16 @@ export const query = graphql`
                         project_description_test
                         body {
                             ... on PRISMIC_ProjectBodyCode_slice_in_project {
-                              type
-                              fields {
-                                repeatable_code_slice
-                              }
+                                type
+                                fields {
+                                    repeatable_code_slice
+                                }
+                            }
+                            ... on PRISMIC_ProjectBodyText {
+                                type
+                                fields {
+                                    text_field
+                                }
                             }
                             __typename
                         }
