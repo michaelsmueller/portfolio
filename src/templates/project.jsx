@@ -93,7 +93,8 @@ const Header = ({ project, meta }) => {
 }
 
 const Body = ({ project }) => {
-    return project.body.map((slice, index) => {
+    if (!project?.body || !project.body?.length) return null; 
+    else return project.body.map((slice, index) => {
         const { type, primary } = slice;
         if (type.includes('code')) {
             const lang = type.slice(5);
@@ -144,7 +145,6 @@ export const query = graphql`
                         project_category
                         project_post_date
                         project_hero_image
-                        project_description
                         body {
                             ... on PRISMIC_ProjectBodyCode_javascript {
                                 type
