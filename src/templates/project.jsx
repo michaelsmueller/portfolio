@@ -8,12 +8,7 @@ import { Link, graphql } from 'gatsby';
 import { RichText } from 'prismic-reactjs';
 import Button from 'components/_ui/Button';
 import Layout from 'components/Layout';
-
-// import htmlSerializer from 'services/html-serializer';
 import Prism from 'prismjs';
-// Prism.hooks.add('before-sanity-check', function (env) {
-//     env.code = env.element.innerText;
-// });
 
 const ProjectHeroContainer = styled('div')`
     background: ${colors.grey200};
@@ -24,10 +19,7 @@ const ProjectHeroContainer = styled('div')`
     position: relative;
     padding-top: 2.25em;
     margin-bottom: 3.5em;
-
-    img {
-        max-width: 600px;
-    }
+    img { max-width: 600px }
 `;
 
 const ProjectTitle = styled('div') `
@@ -57,110 +49,88 @@ const WorkLink = styled(Link)`
     text-align: center;
 `;
 
+const Header = ({ project, meta }) => {
+    return (
+        <Helmet
+            title={`${project.project_title[0].text} | Michael Mueller, web developer & financial advisor`}
+            titleTemplate={`%s | ${meta.title}`}
+            meta={[
+                {
+                    name: `description`,
+                    content: meta.description,
+                },
+                {
+                    property: `og:title`,
+                    content: `${project.project_title[0].text} | Michael Mueller, web developer & financial advisor`,
+                },
+                {
+                    property: `og:description`,
+                    content: meta.description,
+                },
+                {
+                    property: `og:type`,
+                    content: `website`,
+                },
+                {
+                    name: `twitter:card`,
+                    content: `summary`,
+                },
+                {
+                    name: `twitter:creator`,
+                    content: meta.author,
+                },
+                {
+                    name: `twitter:title`,
+                    content: meta.title,
+                },
+                {
+                    name: `twitter:description`,
+                    content: meta.description,
+                },
+            ].concat(meta)}
+        />
+    );
+}
+
+const Body = ({ project }) => {
+    return project.body.map((slice, index) => {
+        const { type, primary } = slice;
+        if (type.includes('code')) {
+            const lang = type.slice(5);
+            return <pre key={index}><code className={`language-${lang}`}>{RichText.asText(primary.code_text)}</code></pre>
+        } else if (type === 'text') return <RichText key={index} render={primary.rich_text} />;
+        else return null;
+    });
+};
+
 const Project = ({ project, meta }) => {
     useEffect(() => { Prism.highlightAll() });
-    console.log('project.body', project.body);
-    const bodyContent = project.body.map(slice => {
-        // const codeText = slice.fields[0].repeatable_code_slice[0].text;
-        // console.log('codeText', codeText);
-        // console.log('type of codeText', typeof codeText);
-        return (
-            <>
-                {/* {codeText} */}
-            </>
-        )
-    });
-    console.log('bodyContent', bodyContent);
     return (
         <>
-            <Helmet
-                title={`${project.project_title[0].text} | Michael Mueller, web developer & financial advisor`}
-                titleTemplate={`%s | ${meta.title}`}
-                meta={[
-                    {
-                        name: `description`,
-                        content: meta.description,
-                    },
-                    {
-                        property: `og:title`,
-                        content: `${project.project_title[0].text} | Michael Mueller, web developer & financial advisor`,
-                    },
-                    {
-                        property: `og:description`,
-                        content: meta.description,
-                    },
-                    {
-                        property: `og:type`,
-                        content: `website`,
-                    },
-                    {
-                        name: `twitter:card`,
-                        content: `summary`,
-                    },
-                    {
-                        name: `twitter:creator`,
-                        content: meta.author,
-                    },
-                    {
-                        name: `twitter:title`,
-                        content: meta.title,
-                    },
-                    {
-                        name: `twitter:description`,
-                        content: meta.description,
-                    },
-                ].concat(meta)}
-            />
+            <Header project={project} meta={meta} />
             <Layout>
-                <ProjectTitle>
-                    {RichText.render(project.project_title)}
-                </ProjectTitle>
-                {project.project_hero_image && (
-                    <ProjectHeroContainer>
-                        <img src={project.project_hero_image.url} alt='bees' />
-                    </ProjectHeroContainer>
-                )}
+                <ProjectTitle>{RichText.render(project.project_title)}</ProjectTitle>
+                {project.project_hero_image &&
+                    <ProjectHeroContainer><img src={project.project_hero_image.url} alt='project hero' /></ProjectHeroContainer>
+                }
                 <ProjectBody>
-                    {/* <RichText render={project.project_description} htmlSerializer={htmlSerializer} /> */}
-                    {RichText.render(project.project_description)}
-                    <pre>
-                        <code className='language-js'>
-                            {bodyContent}
-                            {/* {RichText.asText(project.project_description_test)} */}
-                        </code>
-                    </pre>
-
-                    {/* {console.log('body', JSON.stringify(project.body, null, 2))} */}
-
-                    {project.body.forEach(slice => {
-                        {/* console.log('slice', JSON.stringify(slice, null, 2)); */}
-                        {/* const codeText = slice.fields[0].repeatable_code_slice[0].text; */}
-                        {/* console.log('code text', codeText); */}
-                        {/* return RichText.asText(codeText); */}
-                    })}
-
-                    <WorkLink to={'/work'}>
-                        <Button className='Button--secondary'>
-                            See other work
-                        </Button>
-                    </WorkLink>
+                    {/* <RichText render={project.project_description} /> */}
+                    <Body project={project} />
+                    <WorkLink to={'/work'}><Button className='Button--secondary'>See other work</Button></WorkLink>
                 </ProjectBody>
             </Layout>
         </>
-    )
+    );
 };
 
 export default ({ data }) => {
-    const projectContent = data.prismic.allProjects.edges[0].node;
-    const meta = data.site.siteMetadata;
-    return (
-        <Project project={projectContent} meta={meta}/>
-    )
+    const { prismic, site } = data;
+    const projectContent = prismic.allProjects.edges[0].node;
+    const meta = site.siteMetadata;
+    return <Project project={projectContent} meta={meta}/>;
 };
 
-Project.propTypes = {
-    project: PropTypes.object.isRequired,
-};
+Project.propTypes = { project: PropTypes.object.isRequired };
 
 export const query = graphql`
     query ProjectQuery($uid: String) {
@@ -175,18 +145,35 @@ export const query = graphql`
                         project_post_date
                         project_hero_image
                         project_description
-                        project_description_test
                         body {
-                            ... on PRISMIC_ProjectBodyCode_slice_in_project {
+                            ... on PRISMIC_ProjectBodyCode_javascript {
                                 type
-                                fields {
-                                    repeatable_code_slice
+                                primary {
+                                    code_text
+                                }
+                            }
+                            ... on PRISMIC_ProjectBodyCode_jsx {
+                                type
+                                primary {
+                                    code_text
+                                }
+                            }
+                            ... on PRISMIC_ProjectBodyCode_css {
+                                type
+                                primary {
+                                    code_text
+                                }
+                            }
+                            ... on PRISMIC_ProjectBodyCode_html {
+                                type
+                                primary {
+                                    code_text
                                 }
                             }
                             ... on PRISMIC_ProjectBodyText {
                                 type
-                                fields {
-                                    text_field
+                                primary {
+                                    rich_text
                                 }
                             }
                             __typename
