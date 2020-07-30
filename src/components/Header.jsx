@@ -59,6 +59,8 @@ const HeaderLinks = styled('div')`
         }
 
         &:hover {
+            color: ${colors.magenta500};
+
             &:after {
                 background: ${colors.magenta500};
                 transition: 100ms ease-in-out background;
