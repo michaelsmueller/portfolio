@@ -92,7 +92,7 @@ const About = ({ bio, socialLinks }) => (
         </AboutLinkContainer>
         <AboutBio>{RichText.render(bio)}</AboutBio>
         <AboutActions>
-            <a href='mailto:michael@michaelmueller.dev' target='_blank' rel='noopener noreferrer'>
+            <a href='mailto:hello@michaelmueller.dev' target='_blank' rel='noopener noreferrer'>
                 <Button className='Button--secondary'>Email me</Button>
             </a>
         </AboutActions>

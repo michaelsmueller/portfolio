@@ -87,7 +87,7 @@ const Header = () => (
                     to='/blog'>
                     Blog
                 </Link> */}
-                <a href='mailto:hello@michaelmueller.dev'>Contact</a>
+                <a href='mailto:hello@michaelmueller.dev' target='_blank' rel='noopener noreferrer'>Contact</a>
             </HeaderLinks>
         </HeaderContent>
     </HeaderContainer>
