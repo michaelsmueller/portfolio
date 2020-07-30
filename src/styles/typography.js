@@ -56,7 +56,7 @@ const typeStyles = css`
     }
 
     li {
-        line-height: 1.5;
+        line-height: 1.9;
         padding: 5px 0;
     }
 
