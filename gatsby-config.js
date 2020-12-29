@@ -1,9 +1,9 @@
-require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
+require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })
 
 module.exports = {
   siteMetadata: {
     title: `Michael Mueller | Web developer & financial advisor`,
-        description: `My work portfolio.`,
+    description: `My work portfolio.`,
     author: `Michael Mueller | michaelmueller.dev`,
   },
   plugins: [
@@ -26,11 +26,11 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-        resolve: '@prismicio/gatsby-source-prismic-graphql',
-        options: {
-            repositoryName: 'michael-portfolio',
-            linkResolver: () => post => `/${post.uid}`,
-        }
+      resolve: '@prismicio/gatsby-source-prismic-graphql',
+      options: {
+        repositoryName: 'michael-portfolio',
+        linkResolver: () => post => `/${post.uid}`,
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -46,11 +46,11 @@ module.exports = {
     },
     // https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/
     {
-        resolve: `gatsby-plugin-google-analytics`,
-        options: {
-            trackingId: 'YOUR_GOOGLE_ANALYTICS_TRACKING_ID',
-            head: true,
-        },
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'YOUR_GOOGLE_ANALYTICS_TRACKING_ID',
+        head: true,
+      },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
@@ -128,4 +128,4 @@ module.exports = {
       },
     },
   ],
-};
+}
