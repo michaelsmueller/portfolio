@@ -1,51 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
+import WorkHead from 'components/head/WorkHead';
 import Layout from 'components/Layout';
 import ProjectCard from 'components/ProjectCard';
 import { WorkTitle } from 'styles/workStyles';
 
 const Work = ({ projects, meta }) => (
   <>
-    <Helmet
-      title={`Work | Michael Mueller, web developer & financial advisor`}
-      titleTemplate={`%s | Work | Michael Mueller, web developer & financial advisor`}
-      meta={[
-        {
-          name: `description`,
-          content: meta.description,
-        },
-        {
-          property: `og:title`,
-          content: `Work | Michael Mueller, web developer & financial advisor`,
-        },
-        {
-          property: `og:description`,
-          content: meta.description,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: meta.author,
-        },
-        {
-          name: `twitter:title`,
-          content: meta.title,
-        },
-        {
-          name: `twitter:description`,
-          content: meta.description,
-        },
-      ].concat(meta)}
-    />
+    <WorkHead meta={meta} />
     <Layout>
       <WorkTitle>Work</WorkTitle>
       <>

@@ -1,54 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
-import { RichText } from 'prismic-reactjs'
-import { graphql } from 'gatsby'
-import Button from 'components/_ui/Button'
-import About from 'components/About'
-import Layout from 'components/Layout'
-import ProjectCard from 'components/ProjectCard'
-import { Hero, Section, WorkAction } from 'styles/indexStyles.js'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { RichText } from 'prismic-reactjs';
+import { graphql } from 'gatsby';
+import IndexHead from 'components/head/IndexHead';
+import Button from 'components/_ui/Button';
+import About from 'components/About';
+import Layout from 'components/Layout';
+import ProjectCard from 'components/ProjectCard';
+import { Hero, Section, WorkAction } from 'styles/indexStyles';
 
 const RenderBody = ({ home, projects, meta }) => (
   <>
-    <Helmet
-      title={meta.title}
-      titleTemplate={`%s | ${meta.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: meta.description,
-        },
-        {
-          property: `og:title`,
-          content: meta.title,
-        },
-        {
-          property: `og:description`,
-          content: meta.description,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: meta.author,
-        },
-        {
-          name: `twitter:title`,
-          content: meta.title,
-        },
-        {
-          name: `twitter:description`,
-          content: meta.description,
-        },
-      ].concat(meta)}
-    />
+    <IndexHead meta={meta} />
     <Hero>
       <>{RichText.render(home.hero_title)}</>
       <a href={home.hero_button_link.url}>
@@ -75,28 +38,28 @@ const RenderBody = ({ home, projects, meta }) => (
       <About bio={home.about_bio} socialLinks={home.about_links} />
     </Section>
   </>
-)
+);
 
 export default ({ data }) => {
   // Required check for no data being returned
-  const doc = data.prismic.allHomepages.edges.slice(0, 1).pop()
-  const projects = data.prismic.allProjects.edges
-  const meta = data.site.siteMetadata
+  const doc = data.prismic.allHomepages.edges.slice(0, 1).pop();
+  const projects = data.prismic.allProjects.edges;
+  const meta = data.site.siteMetadata;
 
-  if (!doc || !projects) return null
+  if (!doc || !projects) return null;
 
   return (
     <Layout>
       <RenderBody home={doc.node} projects={projects} meta={meta} />
     </Layout>
-  )
-}
+  );
+};
 
 RenderBody.propTypes = {
   home: PropTypes.object.isRequired,
   projects: PropTypes.array.isRequired,
   meta: PropTypes.object.isRequired,
-}
+};
 
 export const query = graphql`
   {
@@ -144,4 +107,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

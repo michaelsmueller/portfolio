@@ -1,9 +1,9 @@
 import React from 'react';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import { RichText } from 'prismic-reactjs';
+import ProjectHead from 'components/head/ProjectHead';
 import Button from 'components/_ui/Button';
 import Layout from 'components/Layout';
 import Prism from 'prismjs';
@@ -13,49 +13,6 @@ import {
   ProjectBody,
   WorkLink,
 } from 'styles/templates/projectStyles';
-
-const Header = ({ project, meta }) => {
-  return (
-    <Helmet
-      title={`${project.project_title[0].text} | Michael Mueller, web developer & financial advisor`}
-      titleTemplate={`%s | ${meta.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: meta.description,
-        },
-        {
-          property: `og:title`,
-          content: `${project.project_title[0].text} | Michael Mueller, web developer & financial advisor`,
-        },
-        {
-          property: `og:description`,
-          content: meta.description,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: meta.author,
-        },
-        {
-          name: `twitter:title`,
-          content: meta.title,
-        },
-        {
-          name: `twitter:description`,
-          content: meta.description,
-        },
-      ].concat(meta)}
-    />
-  );
-};
 
 const Body = ({ project }) => {
   if (!project?.body || !project.body?.length) return null;
@@ -83,7 +40,7 @@ const Project = ({ project, meta }) => {
   });
   return (
     <>
-      <Header project={project} meta={meta} />
+      <ProjectHead project={project} meta={meta} />
       <Layout>
         <ProjectTitle>{RichText.render(project.project_title)}</ProjectTitle>
         {project.project_hero_image && (

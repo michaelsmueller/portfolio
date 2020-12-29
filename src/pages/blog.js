@@ -1,51 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
+import BlogHead from 'components/head/BlogHead';
 import Layout from 'components/Layout';
 import PostCard from 'components/PostCard';
 import { BlogTitle, BlogGrid } from 'styles/blogStyles';
 
 const Blog = ({ posts, meta }) => (
   <>
-    <Helmet
-      title={`Blog | Michael Mueller, web developer & financial advisor`}
-      titleTemplate={`%s | Blog | Michael Mueller, web developer & financial advisor`}
-      meta={[
-        {
-          name: `description`,
-          content: meta.description,
-        },
-        {
-          property: `og:title`,
-          content: `Blog | Michael Mueller, web developer & financial advisor`,
-        },
-        {
-          property: `og:description`,
-          content: meta.description,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: meta.author,
-        },
-        {
-          name: `twitter:title`,
-          content: meta.title,
-        },
-        {
-          name: `twitter:description`,
-          content: meta.description,
-        },
-      ].concat(meta)}
-    />
+    <BlogHead meta={meta} />
     <Layout>
       <BlogTitle>Blog</BlogTitle>
       <BlogGrid>
