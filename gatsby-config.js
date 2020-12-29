@@ -26,10 +26,15 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: '@prismicio/gatsby-source-prismic-graphql',
+      resolve: 'gatsby-source-prismic',
       options: {
         repositoryName: 'michael-portfolio',
         linkResolver: () => post => `/${post.uid}`,
+        schemas: {
+          homepage: require('./src/schemas/homepage.json'),
+          post: require('./src/schemas/post.json'),
+          project: require('./src/schemas/project.json'),
+        },
       },
     },
     {

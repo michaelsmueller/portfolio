@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { RichText } from 'prismic-reactjs';
 import { graphql } from 'gatsby';
+import parse from 'html-react-parser';
 import IndexHead from 'components/head/IndexHead';
 import Button from 'components/_ui/Button';
 import About from 'components/About';
@@ -9,41 +9,44 @@ import Layout from 'components/Layout';
 import ProjectCard from 'components/ProjectCard';
 import { Hero, Section, WorkAction } from 'styles/indexStyles';
 
-const RenderBody = ({ home, projects, meta }) => (
-  <>
-    <IndexHead meta={meta} />
-    <Hero>
-      <>{RichText.render(home.hero_title)}</>
-      <a href={home.hero_button_link.url}>
-        <Button>{RichText.render(home.hero_button_text)}</Button>
-      </a>
-    </Hero>
-    <Section>
-      {projects.map((project, i) => (
-        <ProjectCard
-          key={i}
-          category={project.node.project_category}
-          title={project.node.project_title}
-          description={project.node.project_preview_description}
-          thumbnail={project.node.project_preview_thumbnail}
-          uid={project.node._meta.uid}
-        />
-      ))}
-      <WorkAction to={'/work'}>
-        See more work <span>&#8594;</span>
-      </WorkAction>
-    </Section>
-    <Section>
-      {RichText.render(home.about_title)}
-      <About bio={home.about_bio} socialLinks={home.about_links} />
-    </Section>
-  </>
-);
+const RenderBody = ({ home, projects, meta }) => {
+  console.log('home data', home.data);
+  return (
+    <>
+      <IndexHead meta={meta} />
+      <Hero>
+        <>{parse(home.data.hero_title.html)}</>
+        <a href={home.data.hero_button_link.url}>
+          <Button>{parse(home.data.hero_button_text.html)}</Button>
+        </a>
+      </Hero>
+      <Section>
+        {projects.map((project, i) => (
+          <ProjectCard
+            key={i}
+            category={project.node.data.project_category}
+            title={project.node.data.project_title}
+            description={project.node.data.project_preview_description}
+            thumbnail={project.node.data.project_preview_thumbnail}
+            uid={project.node.uid}
+          />
+        ))}
+        <WorkAction to={'/work'}>
+          See more work <span>&#8594;</span>
+        </WorkAction>
+      </Section>
+      <Section>
+        {parse(home.data.about_title.html)}
+        <About bio={home.data.about_bio} socialLinks={home.data.about_links} />
+      </Section>
+    </>
+  );
+};
 
 export default ({ data }) => {
   // Required check for no data being returned
-  const doc = data.prismic.allHomepages.edges.slice(0, 1).pop();
-  const projects = data.prismic.allProjects.edges;
+  const doc = data.allPrismicHomepage.edges.slice(0, 1).pop();
+  const projects = data.allPrismicProject.edges;
   const meta = data.site.siteMetadata;
 
   if (!doc || !projects) return null;
@@ -63,38 +66,52 @@ RenderBody.propTypes = {
 
 export const query = graphql`
   {
-    prismic {
-      allHomepages {
-        edges {
-          node {
-            hero_title
-            hero_button_text
-            hero_button_link {
-              ... on PRISMIC__ExternalLink {
-                _linkType
-                url
-              }
+    allPrismicHomepage {
+      edges {
+        node {
+          data {
+            hero_title {
+              html
             }
-            content
-            about_title
-            about_bio
+            hero_button_text {
+              html
+            }
+            hero_button_link {
+              url
+            }
+            about_title {
+              html
+            }
+            about_bio {
+              html
+            }
             about_links {
-              about_link
+              about_link {
+                raw
+              }
             }
           }
         }
       }
-      allProjects(sortBy: project_post_date_DESC) {
-        edges {
-          node {
-            project_title
-            project_preview_description
-            project_preview_thumbnail
-            project_category
-            project_post_date
-            _meta {
-              uid
+    }
+    allPrismicProject(sort: { order: DESC, fields: data___project_post_date }) {
+      edges {
+        node {
+          uid
+          data {
+            project_title {
+              text
             }
+            project_preview_description {
+              html
+            }
+            project_preview_thumbnail {
+              url
+            }
+            project_category {
+              text
+            }
+            project_post_date
           }
         }
       }

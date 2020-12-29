@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
-import { graphql } from 'gatsby';
+// import { graphql } from 'gatsby';
 import { RichText } from 'prismic-reactjs';
 import PostHead from 'components/head/PostHead';
 import Layout from 'components/Layout';
@@ -44,7 +44,7 @@ const Post = ({ post, meta }) => {
 };
 
 export default ({ data }) => {
-  const postContent = data.prismic.allPosts.edges[0].node;
+  const postContent = data.allPrismicPost.edges[0].node;
   const meta = data.site.siteMetadata;
   return <Post post={postContent} meta={meta} />;
 };
@@ -54,29 +54,39 @@ Post.propTypes = {
   meta: PropTypes.object.isRequired,
 };
 
-export const query = graphql`
-  query PostQuery($uid: String) {
-    prismic {
-      allPosts(uid: $uid) {
-        edges {
-          node {
-            post_title
-            post_hero_image
-            post_hero_annotation
-            post_date
-            post_category
-            post_body
-            post_author
-            post_preview_description
-            _meta {
-              uid
-            }
-          }
-        }
-      }
-    }
-    site {
-      ...SiteInfo
-    }
-  }
-`;
+// export const query = graphql`
+//   {
+//     allPrismicPost(filter: { uid: uid }) {
+//       edges {
+//         node {
+//           uid
+//           data {
+//             post_title {
+//               text
+//             }
+//             post_hero_image {
+//               url
+//             }
+//             post_hero_annotation {
+//               text
+//             }
+//             post_date
+//             post_category {
+//               text
+//             }
+//             post_body {
+//               html
+//             }
+//             post_preview_description {
+//               text
+//             }
+//             post_author
+//           }
+//         }
+//       }
+//     }
+//     site {
+//       ...SiteInfo
+//     }
+//   }
+// `;

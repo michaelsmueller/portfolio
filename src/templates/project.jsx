@@ -38,6 +38,7 @@ const Project = ({ project, meta }) => {
   useEffect(() => {
     Prism.highlightAll();
   });
+  console.log('project', project);
   return (
     <>
       <ProjectHead project={project} meta={meta} />
@@ -61,8 +62,9 @@ const Project = ({ project, meta }) => {
 };
 
 export default ({ data }) => {
-  const { prismic, site } = data;
-  const projectContent = prismic.allProjects.edges[0].node;
+  console.log('data', data);
+  const { prismicProject, site } = data;
+  const projectContent = prismicProject.data;
   const meta = site.siteMetadata;
   return <Project project={projectContent} meta={meta} />;
 };
@@ -71,51 +73,61 @@ Project.propTypes = { project: PropTypes.object.isRequired };
 
 export const query = graphql`
   query ProjectQuery($uid: String) {
-    prismic {
-      allProjects(uid: $uid) {
-        edges {
-          node {
-            project_title
-            project_preview_description
-            project_preview_thumbnail
-            project_category
-            project_post_date
-            project_hero_image
-            body {
-              ... on PRISMIC_ProjectBodyCode_javascript {
-                type
-                primary {
-                  code_text
-                }
+    prismicProject(uid: { eq: $uid }) {
+      uid
+      data {
+        project_title {
+          text
+        }
+        project_preview_description {
+          text
+        }
+        project_preview_thumbnail {
+          url
+        }
+        project_category {
+          text
+        }
+        project_post_date
+        body {
+          ... on PrismicProjectBodyCodeJavascript {
+            slice_type
+            primary {
+              code_text {
+                text
               }
-              ... on PRISMIC_ProjectBodyCode_jsx {
-                type
-                primary {
-                  code_text
-                }
-              }
-              ... on PRISMIC_ProjectBodyCode_css {
-                type
-                primary {
-                  code_text
-                }
-              }
-              ... on PRISMIC_ProjectBodyCode_html {
-                type
-                primary {
-                  code_text
-                }
-              }
-              ... on PRISMIC_ProjectBodyText {
-                type
-                primary {
-                  rich_text
-                }
-              }
-              __typename
             }
-            _meta {
-              uid
+          }
+          ... on PrismicProjectBodyCodeJsx {
+            slice_type
+            primary {
+              code_text {
+                raw
+              }
+            }
+          }
+          ... on PrismicProjectBodyCodeCss {
+            slice_type
+            primary {
+              code_text {
+                text
+              }
+            }
+          }
+          ... on PrismicProjectBodyCodeHtml {
+            slice_type
+            primary {
+              code_text {
+                text
+              }
+            }
+          }
+          ... on PrismicProjectBodyText {
+            slice_type
+            primary {
+              rich_text {
+                html
+              }
             }
           }
         }

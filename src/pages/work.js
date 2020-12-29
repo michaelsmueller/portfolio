@@ -28,7 +28,7 @@ const Work = ({ projects, meta }) => (
 );
 
 export default ({ data }) => {
-  const projects = data.prismic.allProjects.edges;
+  const projects = data.allPrismicProject.edges;
   const meta = data.site.siteMetadata;
   if (!projects) return null;
 
@@ -41,24 +41,34 @@ Work.propTypes = {
 
 export const query = graphql`
   {
-    prismic {
-      allProjects(sortBy: project_post_date_DESC) {
-        edges {
-          node {
-            project_title
-            project_preview_description
-            project_preview_thumbnail
-            project_category
-            project_post_date
-            _meta {
-              uid
+    allPrismicProject(sort: { order: DESC, fields: data___project_post_date }) {
+      edges {
+        node {
+          uid
+          data {
+            project_title {
+              text
             }
+            project_preview_description {
+              text
+            }
+            project_preview_thumbnail {
+              url
+            }
+            project_category {
+              text
+            }
+            project_post_date
           }
         }
       }
     }
     site {
-      ...SiteInfo
+      siteMetadata {
+        title
+        description
+        author
+      }
     }
   }
 `;

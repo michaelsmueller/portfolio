@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'components/_ui/Button';
-import { RichText } from 'prismic-reactjs';
 import PropTypes from 'prop-types';
+import parse from 'html-react-parser';
 import {
   AboutContainer,
   AboutLinkContainer,
@@ -16,16 +16,16 @@ const About = ({ bio, socialLinks }) => (
       {socialLinks.map((social, i) => (
         <AboutLink
           key={i}
-          href={social.about_link[0].spans[0].data.url}
+          href={social.about_link.raw[0].spans[0].data.url}
           target="_blank"
           rel="noopener noreferrer"
         >
-          {social.about_link[0].text}
+          {social.about_link.raw[0].text}
           <span>&#8594;</span>
         </AboutLink>
       ))}
     </AboutLinkContainer>
-    <AboutBio>{RichText.render(bio)}</AboutBio>
+    <AboutBio>{parse(bio.html)}</AboutBio>
     <AboutActions>
       <a
         href="mailto:hello@michaelmueller.dev"
@@ -41,6 +41,6 @@ const About = ({ bio, socialLinks }) => (
 export default About;
 
 About.propTypes = {
-  bio: PropTypes.array.isRequired,
+  bio: PropTypes.object.isRequired,
   socialLinks: PropTypes.array.isRequired,
 };
