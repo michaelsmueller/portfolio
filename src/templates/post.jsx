@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Moment from 'react-moment';
 import { graphql } from 'gatsby';
 import parse from 'html-react-parser';
 import PostHead from 'components/head/PostHead';
@@ -24,9 +23,7 @@ const Post = ({ post, meta }) => (
       <PostTitle>{parse(post.post_title.html)}</PostTitle>
       <PostMetas>
         <PostAuthor>{post.post_author}</PostAuthor>
-        <PostDate>
-          <Moment format="MMMM D, YYYY">{post.post_date}</Moment>
-        </PostDate>
+        <PostDate>{post.post_date}</PostDate>
       </PostMetas>
       {post.post_hero_image && (
         <PostHeroContainer>
