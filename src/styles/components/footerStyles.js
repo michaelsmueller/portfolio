@@ -15,7 +15,7 @@ export const FooterContainer = styled('div')`
 
 export const FooterAuthor = styled('a')`
   font-size: 0.75em;
-  color: ${colors.grey700};
+  color: ${colors.grey800};
   display: flex;
   flex-direction: column;
   align-items: center;

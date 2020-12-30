@@ -21,9 +21,7 @@ const PostCard = ({ author, category, date, title, description, uid }) => (
     </PostCardAction>
     <PostMetas>
       <PostAuthor>{author}</PostAuthor>
-      <PostDate>
-        {date}
-      </PostDate>
+      <PostDate>{date}</PostDate>
     </PostMetas>
   </PostCardContainer>
 );

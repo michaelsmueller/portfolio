@@ -27,7 +27,7 @@ const Post = ({ post, meta }) => (
       </PostMetas>
       {post.post_hero_image && (
         <PostHeroContainer>
-          <img src={post.post_hero_image.url} alt="bees" />
+          <img src={post.post_hero_image.url} alt={post.post_hero_image.alt} />
           <PostHeroAnnotation>
             {post.post_hero_annotation.text}
           </PostHeroAnnotation>
@@ -61,6 +61,7 @@ export const query = graphql`
         }
         post_hero_image {
           url
+          alt
         }
         post_hero_annotation {
           text

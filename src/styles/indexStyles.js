@@ -24,13 +24,13 @@ export const Hero = styled('div')`
         color: ${colors.blue500};
       }
       &:nth-of-type(2) {
-        color: ${colors.orange500};
+        color: ${colors.orange600};
       }
       &:nth-of-type(3) {
-        color: ${colors.purple500};
+        color: ${colors.purple600};
       }
       &:nth-of-type(4) {
-        color: ${colors.green500};
+        color: ${colors.green700};
       }
       &:nth-of-type(5) {
         color: ${colors.teal500};

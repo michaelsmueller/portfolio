@@ -4,7 +4,7 @@ import dimensions from 'styles/dimensions';
 
 export const ButtonContainer = styled('button')`
   padding: 1em 2em;
-  background: ${colors.blue400};
+  background: ${colors.blue700};
   font-weight: 600;
   color: white;
   outline: none;
@@ -47,7 +47,7 @@ export const ButtonContainer = styled('button')`
 
   &.Button--secondary {
     background: ${colors.blue200};
-    color: ${colors.blue600};
+    color: ${colors.blue700};
     padding: 0.95em 1.8em;
     font-size: 0.95rem;
 
