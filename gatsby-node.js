@@ -21,10 +21,11 @@ exports.createPages = async ({ graphql, actions }) => {
               uid
               data {
                 project_title {
+                  html
                   text
                 }
                 project_preview_description {
-                  text
+                  html
                 }
                 project_preview_thumbnail {
                   url
@@ -43,6 +44,7 @@ exports.createPages = async ({ graphql, actions }) => {
               uid
               data {
                 post_title {
+                  html
                   text
                 }
                 post_hero_image {
@@ -59,7 +61,7 @@ exports.createPages = async ({ graphql, actions }) => {
                   html
                 }
                 post_preview_description {
-                  text
+                  html
                 }
                 post_author
               }

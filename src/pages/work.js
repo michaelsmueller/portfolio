@@ -36,6 +36,7 @@ export default ({ data }) => {
 
 Work.propTypes = {
   projects: PropTypes.array.isRequired,
+  meta: PropTypes.object.isRequired,
 };
 
 export const query = graphql`
@@ -46,6 +47,7 @@ export const query = graphql`
           uid
           data {
             project_title {
+              html
               text
             }
             project_preview_description {

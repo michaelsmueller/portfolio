@@ -9,38 +9,36 @@ import Layout from 'components/Layout';
 import ProjectCard from 'components/ProjectCard';
 import { Hero, Section, WorkAction } from 'styles/indexStyles';
 
-const RenderBody = ({ home, projects, meta }) => {
-  return (
-    <>
-      <IndexHead meta={meta} />
-      <Hero>
-        <>{parse(home.data.hero_title.html)}</>
-        <a href={home.data.hero_button_link.url}>
-          <Button>{parse(home.data.hero_button_text.html)}</Button>
-        </a>
-      </Hero>
-      <Section>
-        {projects.map((project, i) => (
-          <ProjectCard
-            key={i}
-            category={project.node.data.project_category}
-            title={project.node.data.project_title}
-            description={project.node.data.project_preview_description}
-            thumbnail={project.node.data.project_preview_thumbnail}
-            uid={project.node.uid}
-          />
-        ))}
-        <WorkAction to={'/work'}>
-          See more work <span>&#8594;</span>
-        </WorkAction>
-      </Section>
-      <Section>
-        {parse(home.data.about_title.html)}
-        <About bio={home.data.about_bio} socialLinks={home.data.about_links} />
-      </Section>
-    </>
-  );
-};
+const RenderBody = ({ home, projects, meta }) => (
+  <>
+    <IndexHead meta={meta} />
+    <Hero>
+      <>{parse(home.data.hero_title.html)}</>
+      <a href={home.data.hero_button_link.url}>
+        <Button>{parse(home.data.hero_button_text.html)}</Button>
+      </a>
+    </Hero>
+    <Section>
+      {projects.map((project, i) => (
+        <ProjectCard
+          key={i}
+          category={project.node.data.project_category}
+          title={project.node.data.project_title}
+          description={project.node.data.project_preview_description}
+          thumbnail={project.node.data.project_preview_thumbnail}
+          uid={project.node.uid}
+        />
+      ))}
+      <WorkAction to={'/work'}>
+        See more work <span>&#8594;</span>
+      </WorkAction>
+    </Section>
+    <Section>
+      {parse(home.data.about_title.html)}
+      <About bio={home.data.about_bio} socialLinks={home.data.about_links} />
+    </Section>
+  </>
+);
 
 export default ({ data }) => {
   // Required check for no data being returned

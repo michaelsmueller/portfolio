@@ -15,12 +15,12 @@ const Blog = ({ posts, meta }) => (
         {posts.map((post, i) => (
           <PostCard
             key={i}
-            author={post.node.post_author}
-            category={post.node.post_category}
-            title={post.node.post_title}
-            date={post.node.post_date}
-            description={post.node.post_preview_description}
-            uid={post.node._meta.uid}
+            author={post.node.data.post_author}
+            category={post.node.data.post_category}
+            title={post.node.data.post_title}
+            date={post.node.data.post_date}
+            description={post.node.data.post_preview_description}
+            uid={post.node.uid}
           />
         ))}
       </BlogGrid>
@@ -48,6 +48,7 @@ export const query = graphql`
           uid
           data {
             post_title {
+              html
               text
             }
             post_hero_image {
@@ -64,7 +65,7 @@ export const query = graphql`
               html
             }
             post_preview_description {
-              text
+              html
             }
             post_author
           }

@@ -1,12 +1,12 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import Logo from 'components/_ui/Logo'
+import React from 'react';
+import { Link } from 'gatsby';
+import Logo from 'components/_ui/Logo';
 import {
   HeaderContainer,
   HeaderContent,
   LogoContainer,
   HeaderLinks,
-} from 'styles/components/headerStyles'
+} from 'styles/components/headerStyles';
 
 const Header = () => (
   <HeaderContainer>
@@ -23,16 +23,16 @@ const Header = () => (
         <Link activeClassName="Link--is-active" to="/blog">
           Blog
         </Link>
-        <a
+        {/* <a
           href="mailto:hello@michaelmueller.dev"
           target="_blank"
           rel="noopener noreferrer"
         >
           Contact
-        </a>
+        </a> */}
       </HeaderLinks>
     </HeaderContent>
   </HeaderContainer>
-)
+);
 
-export default Header
+export default Header;
