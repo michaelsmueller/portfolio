@@ -47,7 +47,6 @@ export const query = graphql`
         uid
         data {
           post_title {
-            html
             text
           }
           post_hero_image {
