@@ -15,11 +15,11 @@ const Work = ({ projects, meta }) => (
         {projects.map((project, i) => (
           <ProjectCard
             key={i}
-            category={project.node.data.project_category}
-            title={project.node.data.project_title}
-            description={project.node.data.project_preview_description}
-            thumbnail={project.node.data.project_preview_thumbnail}
-            uid={project.node.uid}
+            category={project.data.project_category}
+            title={project.data.project_title}
+            description={project.data.project_preview_description}
+            thumbnail={project.data.project_preview_thumbnail}
+            uid={project.uid}
           />
         ))}
       </>
@@ -28,10 +28,10 @@ const Work = ({ projects, meta }) => (
 );
 
 export default ({ data }) => {
-  const projects = data.allPrismicProject.edges;
-  const meta = data.site.siteMetadata;
-  if (!projects) return null;
-  return <Work projects={projects} meta={meta} />;
+  const { nodes } = data.allPrismicProject;
+  const { siteMetadata } = data.site;
+  if (!nodes) return null;
+  return <Work projects={nodes} meta={siteMetadata} />;
 };
 
 Work.propTypes = {
@@ -42,25 +42,22 @@ Work.propTypes = {
 export const query = graphql`
   {
     allPrismicProject(sort: { order: DESC, fields: data___project_post_date }) {
-      edges {
-        node {
-          uid
-          data {
-            project_title {
-              html
-              text
-            }
-            project_preview_description {
-              html
-            }
-            project_preview_thumbnail {
-              url
-            }
-            project_category {
-              text
-            }
-            project_post_date
+      nodes {
+        uid
+        data {
+          project_title {
+            text
           }
+          project_preview_description {
+            html
+          }
+          project_preview_thumbnail {
+            url
+          }
+          project_category {
+            text
+          }
+          project_post_date
         }
       }
     }

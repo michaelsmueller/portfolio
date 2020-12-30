@@ -15,12 +15,12 @@ const Blog = ({ posts, meta }) => (
         {posts.map((post, i) => (
           <PostCard
             key={i}
-            author={post.node.data.post_author}
-            category={post.node.data.post_category}
-            title={post.node.data.post_title}
-            date={post.node.data.post_date}
-            description={post.node.data.post_preview_description}
-            uid={post.node.uid}
+            author={post.data.post_author}
+            category={post.data.post_category}
+            title={post.data.post_title}
+            date={post.data.post_date}
+            description={post.data.post_preview_description}
+            uid={post.uid}
           />
         ))}
       </BlogGrid>
@@ -29,10 +29,10 @@ const Blog = ({ posts, meta }) => (
 );
 
 export default ({ data }) => {
-  const posts = data.allPrismicPost.edges;
-  const meta = data.site.siteMetadata;
-  if (!posts) return null;
-  return <Blog posts={posts} meta={meta} />;
+  const { nodes } = data.allPrismicPost;
+  const { siteMetadata } = data.site;
+  if (!nodes) return null;
+  return <Blog posts={nodes} meta={siteMetadata} />;
 };
 
 Blog.propTypes = {
@@ -43,32 +43,30 @@ Blog.propTypes = {
 export const query = graphql`
   {
     allPrismicPost(sort: { order: DESC, fields: data___post_date }) {
-      edges {
-        node {
-          uid
-          data {
-            post_title {
-              html
-              text
-            }
-            post_hero_image {
-              url
-            }
-            post_hero_annotation {
-              text
-            }
-            post_date
-            post_category {
-              text
-            }
-            post_body {
-              html
-            }
-            post_preview_description {
-              html
-            }
-            post_author
+      nodes {
+        uid
+        data {
+          post_title {
+            html
+            text
           }
+          post_hero_image {
+            url
+          }
+          post_hero_annotation {
+            text
+          }
+          post_date
+          post_category {
+            text
+          }
+          post_body {
+            html
+          }
+          post_preview_description {
+            html
+          }
+          post_author
         }
       }
     }

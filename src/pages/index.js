@@ -22,11 +22,11 @@ const RenderBody = ({ home, projects, meta }) => (
       {projects.map((project, i) => (
         <ProjectCard
           key={i}
-          category={project.node.data.project_category}
-          title={project.node.data.project_title}
-          description={project.node.data.project_preview_description}
-          thumbnail={project.node.data.project_preview_thumbnail}
-          uid={project.node.uid}
+          category={project.data.project_category}
+          title={project.data.project_title}
+          description={project.data.project_preview_description}
+          thumbnail={project.data.project_preview_thumbnail}
+          uid={project.uid}
         />
       ))}
       <WorkAction to={'/work'}>
@@ -42,15 +42,13 @@ const RenderBody = ({ home, projects, meta }) => (
 
 export default ({ data }) => {
   // Required check for no data being returned
-  const doc = data.allPrismicHomepage.edges.slice(0, 1).pop();
-  const projects = data.allPrismicProject.edges;
-  const meta = data.site.siteMetadata;
-
-  if (!doc || !projects) return null;
-
+  const doc = data.allPrismicHomepage.nodes.slice(0, 1).pop();
+  const { nodes } = data.allPrismicProject;
+  const { siteMetadata } = data.site;
+  if (!doc || !nodes) return null;
   return (
     <Layout>
-      <RenderBody home={doc.node} projects={projects} meta={meta} />
+      <RenderBody home={doc} projects={nodes} meta={siteMetadata} />
     </Layout>
   );
 };
@@ -64,52 +62,48 @@ RenderBody.propTypes = {
 export const query = graphql`
   {
     allPrismicHomepage {
-      edges {
-        node {
-          data {
-            hero_title {
-              html
-            }
-            hero_button_text {
-              html
-            }
-            hero_button_link {
-              url
-            }
-            about_title {
-              html
-            }
-            about_bio {
-              html
-            }
-            about_links {
-              about_link {
-                raw
-              }
+      nodes {
+        data {
+          hero_title {
+            html
+          }
+          hero_button_text {
+            html
+          }
+          hero_button_link {
+            url
+          }
+          about_title {
+            html
+          }
+          about_bio {
+            html
+          }
+          about_links {
+            about_link {
+              raw
             }
           }
         }
       }
     }
     allPrismicProject(sort: { order: DESC, fields: data___project_post_date }) {
-      edges {
-        node {
-          uid
-          data {
-            project_title {
-              text
-            }
-            project_preview_description {
-              html
-            }
-            project_preview_thumbnail {
-              url
-            }
-            project_category {
-              text
-            }
-            project_post_date
+      nodes {
+        uid
+        data {
+          project_title {
+            text
           }
+          project_preview_description {
+            html
+          }
+          project_preview_thumbnail {
+            url
+          }
+          project_category {
+            text
+          }
+          project_post_date
         }
       }
     }
