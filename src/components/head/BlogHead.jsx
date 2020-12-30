@@ -1,12 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import favicon from 'images/favicon-32x32.png';
 
 const BlogHead = ({ meta }) => (
   <Helmet
+    htmlAttributes={{ lang: 'en' }}
     title={`Blog | Michael Mueller, web developer & financial advisor`}
     titleTemplate={`%s | Blog | Michael Mueller, web developer & financial advisor`}
-    link={[{ rel: 'icon', type: 'image/png', href: favicon }]}
     meta={[
       {
         name: `description`,
