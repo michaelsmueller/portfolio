@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 
 const ProjectHead = ({ project, meta }) => (
   <Helmet
-    title={`${project.project_title[0].text} | Michael Mueller, web developer & financial advisor`}
+    title={`${project.project_title.text} | Michael Mueller, web developer & financial advisor`}
     titleTemplate={`%s | ${meta.title}`}
     meta={[
       {
@@ -12,7 +12,7 @@ const ProjectHead = ({ project, meta }) => (
       },
       {
         property: `og:title`,
-        content: `${project.project_title[0].text} | Michael Mueller, web developer & financial advisor`,
+        content: `${project.project_title.text} | Michael Mueller, web developer & financial advisor`,
       },
       {
         property: `og:description`,

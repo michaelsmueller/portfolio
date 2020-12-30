@@ -10,7 +10,6 @@ import ProjectCard from 'components/ProjectCard';
 import { Hero, Section, WorkAction } from 'styles/indexStyles';
 
 const RenderBody = ({ home, projects, meta }) => {
-  console.log('home data', home.data);
   return (
     <>
       <IndexHead meta={meta} />

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import { RichText } from 'prismic-reactjs';
+import parse from 'html-react-parser';
 import ProjectHead from 'components/head/ProjectHead';
 import Button from 'components/_ui/Button';
 import Layout from 'components/Layout';
@@ -18,32 +18,27 @@ const Body = ({ project }) => {
   if (!project?.body || !project.body?.length) return null;
   else
     return project.body.map((slice, index) => {
-      const { type, primary } = slice;
-      if (type.includes('code')) {
-        const lang = type.slice(5);
+      const { slice_type, primary } = slice;
+      if (slice_type.includes('code')) {
+        const lang = slice_type.slice(5);
         return (
           <pre key={index}>
-            <code className={`language-${lang}`}>
-              {RichText.asText(primary.code_text)}
-            </code>
+            <code className={`language-${lang}`}>{primary.code_text.text}</code>
           </pre>
         );
-      } else if (type === 'text')
-        return <RichText key={index} render={primary.rich_text} />;
+      } else if (slice_type === 'text')
+        return <Fragment key={index}>{parse(primary.rich_text.html)}</Fragment>;
       else return null;
     });
 };
 
 const Project = ({ project, meta }) => {
-  useEffect(() => {
-    Prism.highlightAll();
-  });
-  console.log('project', project);
+  useEffect(() => Prism.highlightAll());
   return (
     <>
       <ProjectHead project={project} meta={meta} />
       <Layout>
-        <ProjectTitle>{RichText.render(project.project_title)}</ProjectTitle>
+        <ProjectTitle>{parse(project.project_title.html)}</ProjectTitle>
         {project.project_hero_image && (
           <ProjectHeroContainer>
             <img src={project.project_hero_image.url} alt="project hero" />
@@ -62,7 +57,6 @@ const Project = ({ project, meta }) => {
 };
 
 export default ({ data }) => {
-  console.log('data', data);
   const { prismicProject, site } = data;
   const projectContent = prismicProject.data;
   const meta = site.siteMetadata;
@@ -77,19 +71,14 @@ export const query = graphql`
       uid
       data {
         project_title {
+          html
           text
         }
-        project_preview_description {
-          text
-        }
-        project_preview_thumbnail {
+        project_hero_image {
           url
         }
-        project_category {
-          text
-        }
-        project_post_date
         body {
+          __typename
           ... on PrismicProjectBodyCodeJavascript {
             slice_type
             primary {
@@ -102,7 +91,7 @@ export const query = graphql`
             slice_type
             primary {
               code_text {
-                raw
+                text
               }
             }
           }
