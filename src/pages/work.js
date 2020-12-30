@@ -15,11 +15,11 @@ const Work = ({ projects, meta }) => (
         {projects.map((project, i) => (
           <ProjectCard
             key={i}
-            category={project.node.project_category}
-            title={project.node.project_title}
-            description={project.node.project_preview_description}
-            thumbnail={project.node.project_preview_thumbnail}
-            uid={project.node._meta.uid}
+            category={project.node.data.project_category}
+            title={project.node.data.project_title}
+            description={project.node.data.project_preview_description}
+            thumbnail={project.node.data.project_preview_thumbnail}
+            uid={project.node.uid}
           />
         ))}
       </>
@@ -31,7 +31,6 @@ export default ({ data }) => {
   const projects = data.allPrismicProject.edges;
   const meta = data.site.siteMetadata;
   if (!projects) return null;
-
   return <Work projects={projects} meta={meta} />;
 };
 
@@ -50,7 +49,7 @@ export const query = graphql`
               text
             }
             project_preview_description {
-              text
+              html
             }
             project_preview_thumbnail {
               url
@@ -64,11 +63,7 @@ export const query = graphql`
       }
     }
     site {
-      siteMetadata {
-        title
-        description
-        author
-      }
+      ...SiteInfo
     }
   }
 `;
