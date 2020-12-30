@@ -19,7 +19,7 @@ export const PostHeroAnnotation = styled('div')`
 
   h6 {
     text-align: right;
-    color: ${colors.grey600};
+    color: ${colors.grey700};
     font-weight: 400;
     font-size: 0.85rem;
   }

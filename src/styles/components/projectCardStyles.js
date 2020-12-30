@@ -78,12 +78,16 @@ export const ProjectCardContent = styled('div')`
   }
 `;
 
-export const ProjectCardCategory = styled('h6')`
-  font-weight: 600;
-  color: ${colors.grey600};
+export const ProjectCardCategory = styled('p')`
+  font-size: 0.9em;
+  font-weight: 500;
+  color: ${colors.grey800};
+  margin: 0;
+  }
 `;
 
-export const ProjectCardTitle = styled('h3')`
+export const ProjectCardTitle = styled('h2')`
+  font-weight: 700;
   margin-bottom: 0.5em;
   margin-top: 0.5em;
 `;

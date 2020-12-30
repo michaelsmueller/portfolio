@@ -1,10 +1,12 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import favicon from 'images/favicon-32x32.png';
 
 const IndexHead = ({ meta }) => (
   <Helmet
     title={meta.title}
     titleTemplate={`%s | ${meta.title}`}
+    link={[{ rel: 'icon', type: 'image/png', href: favicon }]}
     meta={[
       {
         name: `description`,

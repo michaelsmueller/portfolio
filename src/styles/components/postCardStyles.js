@@ -36,7 +36,7 @@ export const PostCategory = styled('h6')`
   color: ${colors.grey600};
 `;
 
-export const PostTitle = styled('h3')`
+export const PostTitle = styled('h2')`
   margin: 0;
   margin-top: 0.5em;
 `;

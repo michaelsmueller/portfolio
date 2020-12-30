@@ -5,10 +5,10 @@ import { FooterContainer, FooterAuthor } from 'styles/components/footerStyles';
 
 const Footer = () => (
   <FooterContainer>
-    <Link to="/">
+    <Link aria-label='Michael Mueller logo' to='/'>
       <Logo />
     </Link>
-    <FooterAuthor href="https://www.marguerite.io/?utm_source=prist&utm_medium=footer&utm_campaign=prist_starter">
+    <FooterAuthor href='https://www.marguerite.io/?utm_source=prist&utm_medium=footer&utm_campaign=prist_starter'>
       © 2021 — Designed & developed by Marguerite Roth
     </FooterAuthor>
   </FooterContainer>

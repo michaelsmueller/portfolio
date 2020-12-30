@@ -99,6 +99,7 @@ export const query = graphql`
           }
           project_preview_thumbnail {
             url
+            alt
           }
           project_category {
             text

@@ -6,6 +6,7 @@ export const siteInfo = graphql`
       title
       description
       author
+      siteUrl
     }
   }
 `;

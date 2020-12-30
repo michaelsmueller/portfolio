@@ -37,6 +37,14 @@ export const ProjectBody = styled('div')`
   }
 `;
 
+export const RichText = styled('div')`
+  img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+`
+
 export const WorkLink = styled(Link)`
   margin-top: 3em;
   display: block;

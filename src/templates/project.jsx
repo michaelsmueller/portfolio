@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
@@ -12,6 +12,7 @@ import {
   ProjectTitle,
   ProjectBody,
   WorkLink,
+  RichText,
 } from 'styles/templates/projectStyles';
 
 const Body = ({ project }) => {
@@ -27,7 +28,7 @@ const Body = ({ project }) => {
           </pre>
         );
       } else if (slice_type === 'text')
-        return <Fragment key={index}>{parse(primary.rich_text.html)}</Fragment>;
+        return <RichText key={index}>{parse(primary.rich_text.html)}</RichText>;
       else return null;
     });
 };
@@ -41,7 +42,10 @@ const Project = ({ project, meta }) => {
         <ProjectTitle>{parse(project.project_title.html)}</ProjectTitle>
         {project.project_hero_image && (
           <ProjectHeroContainer>
-            <img src={project.project_hero_image.url} alt="project hero" />
+            <img
+              src={project.project_hero_image.url}
+              alt={project.project_hero_image.alt}
+            />
           </ProjectHeroContainer>
         )}
         <ProjectBody>
@@ -78,6 +82,7 @@ export const query = graphql`
         }
         project_hero_image {
           url
+          alt
         }
         body {
           __typename

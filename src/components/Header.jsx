@@ -12,24 +12,24 @@ const Header = () => (
   <HeaderContainer>
     <HeaderContent>
       <LogoContainer>
-        <Link to="/">
+        <Link aria-label='Michael Mueller logo' to='/'>
           <Logo />
         </Link>
       </LogoContainer>
       <HeaderLinks>
-        <Link activeClassName="Link--is-active" to="/work">
+        <Link activeClassName='Link--is-active' to='/work'>
           Work
         </Link>
-        <Link activeClassName="Link--is-active" to="/blog">
+        {/* <Link activeClassName='Link--is-active' to='/blog'>
           Blog
-        </Link>
-        {/* <a
-          href="mailto:hello@michaelmueller.dev"
-          target="_blank"
-          rel="noopener noreferrer"
+        </Link> */}
+        <a
+          href='mailto:hello@michaelmueller.dev'
+          target='_blank'
+          rel='noopener noreferrer'
         >
           Contact
-        </a> */}
+        </a>
       </HeaderLinks>
     </HeaderContent>
   </HeaderContainer>

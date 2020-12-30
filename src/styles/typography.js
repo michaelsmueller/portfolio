@@ -18,12 +18,6 @@ const typeStyles = css`
   }
 
   h2 {
-    margin: 3rem 0 1.5rem 0;
-    font-size: 1.9em;
-    line-height: 1.1;
-  }
-
-  h3 {
     line-height: 1.2;
     font-size: 1.5em;
   }
@@ -35,19 +29,13 @@ const typeStyles = css`
     font-size: 0.95em;
   }
 
-  h6 {
-    font-size: 0.9em;
-    font-weight: 500;
-    margin: 0;
-  }
-
   p {
     line-height: 1.9;
   }
 
   a {
     text-decoration: none;
-    color: ${colors.blue500};
+    color: ${colors.blue600};
 
     &:hover {
       cursor: pointer;
