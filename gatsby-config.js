@@ -7,6 +7,7 @@ module.exports = {
     author: `Michael Mueller | michaelmueller.dev`,
   },
   plugins: [
+    `gatsby-plugin-preact`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -16,6 +17,12 @@ module.exports = {
     `gatsby-plugin-resolve-src`,
     `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-emotion`,
+    {
+      resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
+      options: {
+        devMode: true,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -132,5 +139,17 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        printRejected: true, // Print removed selectors and processed file names
+        // develop: true, // Enable while using `gatsby develop`
+        // tailwind: true, // Enable tailwindcss support
+        // whitelist: ['whitelist'], // Don't remove this selector
+        // ignore: ['/ignored.css', 'prismjs/', 'docsearch.js/'], // Ignore files/folders
+        // purgeOnly : ['components/', '/main.css', 'bootstrap/'], // Purge only these files/folders
+      }
+    },
+    `gatsby-plugin-no-javascript`
   ],
 };

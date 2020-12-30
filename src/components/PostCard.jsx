@@ -1,5 +1,4 @@
 import React from 'react';
-import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 import {
   PostCardContainer,
@@ -23,7 +22,7 @@ const PostCard = ({ author, category, date, title, description, uid }) => (
     <PostMetas>
       <PostAuthor>{author}</PostAuthor>
       <PostDate>
-        <Moment format="MMMM D, YYYY">{date}</Moment>
+        {date}
       </PostDate>
     </PostMetas>
   </PostCardContainer>
