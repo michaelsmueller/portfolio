@@ -7,7 +7,7 @@ import typeStyles from 'styles/typography';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
 import { LayoutContainer } from 'styles/components/layoutStyles';
-import 'styles/fonts.css';
+// import 'styles/fonts.css';
 
 const query = graphql`
   query SiteTitleQuery {
@@ -23,11 +23,11 @@ const Layout = ({ children }) => (
   <StaticQuery
     query={`${query}`}
     render={(data) => (
-      <LayoutContainer className="div">
+      <LayoutContainer className='div'>
         <Global styles={[globalStyles, typeStyles]} />
-        <div className="Layout">
+        <div className='Layout'>
           <Header />
-          <main className="Layout__content">{children}</main>
+          <main className='Layout__content'>{children}</main>
           <Footer />
         </div>
       </LayoutContainer>

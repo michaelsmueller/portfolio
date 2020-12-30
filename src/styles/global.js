@@ -3,6 +3,8 @@ import colors from 'styles/colors';
 import dimensions from 'styles/dimensions';
 
 const globalStyles = css`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
   html,
   body,
   #root {
@@ -10,6 +12,10 @@ const globalStyles = css`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100%;
+  }
+
+  html {
+    font-family: 'Inter', sans-serif;
   }
 
   body {
