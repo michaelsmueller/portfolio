@@ -7,6 +7,7 @@ module.exports = {
     author: `Michael Mueller | michaelmueller.dev`,
   },
   plugins: [
+    `gatsby-plugin-preact`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
