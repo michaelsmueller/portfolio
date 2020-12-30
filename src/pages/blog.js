@@ -1,133 +1,76 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
-import styled from '@emotion/styled';
-import dimensions from 'styles/dimensions';
+import BlogHead from 'components/head/BlogHead';
 import Layout from 'components/Layout';
 import PostCard from 'components/PostCard';
-
-const BlogTitle = styled('h1')`
-    margin-bottom: 1em;
-`;
-
-const BlogGrid = styled('div')`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2.5em;
-
-    @media(max-width: 1050px) {
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 1.5em;
-    }
-
-    @media(max-width: ${dimensions.maxwidthMobile}px) {
-        grid-template-columns: 1fr;
-        grid-gap: 2.5em;
-    }
-`;
+import { BlogTitle, BlogGrid } from 'styles/blogStyles';
 
 const Blog = ({ posts, meta }) => (
-    <>
-        <Helmet
-            title={`Blog | Michael Mueller, web developer & financial advisor`}
-            titleTemplate={`%s | Blog | Michael Mueller, web developer & financial advisor`}
-            meta={[
-                {
-                    name: `description`,
-                    content: meta.description,
-                },
-                {
-                    property: `og:title`,
-                    content: `Blog | Michael Mueller, web developer & financial advisor`,
-                },
-                {
-                    property: `og:description`,
-                    content: meta.description,
-                },
-                {
-                    property: `og:type`,
-                    content: `website`,
-                },
-                {
-                    name: `twitter:card`,
-                    content: `summary`,
-                },
-                {
-                    name: `twitter:creator`,
-                    content: meta.author,
-                },
-                {
-                    name: `twitter:title`,
-                    content: meta.title,
-                },
-                {
-                    name: `twitter:description`,
-                    content: meta.description,
-                },
-            ].concat(meta)}
-        />
-        <Layout>
-            <BlogTitle>
-                Blog
-            </BlogTitle>
-            <BlogGrid>
-                {posts.map((post, i) => (
-                    <PostCard
-                        key={i}
-                        author={post.node.post_author}
-                        category={post.node.post_category}
-                        title={post.node.post_title}
-                        date={post.node.post_date}
-                        description={post.node.post_preview_description}
-                        uid={post.node._meta.uid}
-                    />
-                ))}
-            </BlogGrid>
-        </Layout>
-    </>
+  <>
+    <BlogHead meta={meta} />
+    <Layout>
+      <BlogTitle>Blog</BlogTitle>
+      <BlogGrid>
+        {posts.map((post, i) => (
+          <PostCard
+            key={i}
+            author={post.data.post_author}
+            category={post.data.post_category}
+            title={post.data.post_title}
+            date={post.data.post_date}
+            description={post.data.post_preview_description}
+            uid={post.uid}
+          />
+        ))}
+      </BlogGrid>
+    </Layout>
+  </>
 );
 
 export default ({ data }) => {
-    const posts = data.prismic.allPosts.edges;
-    const meta = data.site.siteMetadata;
-    if (!posts) return null;
-
-    return (
-        <Blog posts={posts} meta={meta}/>
-    )
-}
+  const { nodes } = data.allPrismicPost;
+  const { siteMetadata } = data.site;
+  if (!nodes) return null;
+  return <Blog posts={nodes} meta={siteMetadata} />;
+};
 
 Blog.propTypes = {
-    posts: PropTypes.array.isRequired,
-    meta: PropTypes.object.isRequired,
+  posts: PropTypes.array.isRequired,
+  meta: PropTypes.object.isRequired,
 };
 
 export const query = graphql`
-    {
-        prismic {
-            allPosts(sortBy: post_date_DESC) {
-                edges {
-                    node {
-                        post_title
-                        post_date
-                        post_category
-                        post_preview_description
-                        post_author
-                        _meta {
-                            uid
-                        }
-                    }
-                }
-            }
+  {
+    allPrismicPost(sort: { order: DESC, fields: data___post_date }) {
+      nodes {
+        uid
+        data {
+          post_title {
+            text
+          }
+          post_hero_image {
+            url
+          }
+          post_hero_annotation {
+            text
+          }
+          post_date
+          post_category {
+            text
+          }
+          post_body {
+            html
+          }
+          post_preview_description {
+            html
+          }
+          post_author
         }
-        site {
-            siteMetadata {
-                title
-                description
-                author
-            }
-        }
+      }
     }
+    site {
+      ...SiteInfo
+    }
+  }
 `;
-
