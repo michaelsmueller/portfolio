@@ -45,7 +45,6 @@ const Project = ({ project, meta }) => {
           </ProjectHeroContainer>
         )}
         <ProjectBody>
-          {/* <RichText render={project.project_description} /> */}
           <Body project={project} />
           <WorkLink to={'/work'}>
             <Button className="Button--secondary">See other work</Button>
