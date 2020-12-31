@@ -14,6 +14,18 @@ module.exports = {
     `gatsby-plugin-resolve-src`,
     `gatsby-plugin-emotion`,
     {
+      resolve: `gatsby-plugin-google-fonts-v2`,
+      options: {
+        fonts: [
+          {
+            family: 'Inter',
+            variable: true,
+            weights: ['400..800'],
+          },
+        ],
+      },
+    },
+    {
       resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
       options: {
         devMode: false,
