@@ -13,18 +13,6 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-resolve-src`,
     `gatsby-plugin-emotion`,
-    // {
-    //   resolve: `gatsby-plugin-google-fonts-v2`,
-    //   options: {
-    //     fonts: [
-    //       {
-    //         family: 'Inter',
-    //         variable: true,
-    //         weights: ['400..800'],
-    //       },
-    //     ],
-    //   },
-    // },
     {
       resolve: 'gatsby-omni-font-loader',
       options: {
@@ -40,7 +28,6 @@ module.exports = {
             name: 'Inter',
             file:
               'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800',
-            as: 'font',
           },
         ],
       },
