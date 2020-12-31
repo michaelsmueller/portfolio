@@ -14,22 +14,20 @@ module.exports = {
     `gatsby-plugin-resolve-src`,
     `gatsby-plugin-emotion`,
     {
-      resolve: 'gatsby-omni-font-loader',
+      resolve: `gatsby-plugin-webfonts`,
       options: {
-        enableListener: true,
-        /* Preconnect URL-s. This example is for Google Fonts */
-        preconnect: ['https://fonts.gstatic.com'],
-        /* Font listener interval (in ms). Default is 300ms. Recommended: >=300ms */
-        interval: 300,
-        /* Font listener timeout value (in ms). Default is 30s (30000ms). Listener will no longer check for loaded fonts after timeout, fonts will still be loaded and displayed, but without handling FOUT. */
-        timeout: 30000,
-        web: [
-          {
-            name: 'Inter',
-            file:
-              'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800',
-          },
-        ],
+        fonts: {
+          google: [
+            {
+              family: 'Inter',
+              variants: ['400', '500', '600', '700', '800'],
+              //subsets: ['latin']
+              //text: 'Hello'
+              //fontDisplay: 'swap',
+              //strategy: 'selfHosted' // 'base64' || 'cdn'
+            },
+          ],
+        },
       },
     },
     {
