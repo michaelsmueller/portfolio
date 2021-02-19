@@ -51,7 +51,7 @@ const Project = ({ project, meta }) => {
         <ProjectBody>
           <Body project={project} />
           <WorkLink to={'/work'}>
-            <Button className="Button--secondary">See other work</Button>
+            <Button className='Button--secondary'>See other work</Button>
           </WorkLink>
         </ProjectBody>
       </Layout>
@@ -111,6 +111,14 @@ export const query = graphql`
             }
           }
           ... on PrismicProjectBodyCodeHtml {
+            slice_type
+            primary {
+              code_text {
+                text
+              }
+            }
+          }
+          ... on PrismicProjectBodyCodeSolidity {
             slice_type
             primary {
               code_text {

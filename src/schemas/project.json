@@ -64,11 +64,14 @@
       "config": {
         "labels": {
           "main_slice": [],
-          "main_slice_description": [{
-            "name": "main_slice_label",
-            "display": "main slice label"
-          }],
-          "code": []
+          "main_slice_description": [
+            {
+              "name": "main_slice_label",
+              "display": "main slice label"
+            }
+          ],
+          "code": [],
+          "code_-_solidity": []
         },
         "choices": {
           "code_javascript": {
@@ -128,6 +131,24 @@
           "code_html": {
             "type": "Slice",
             "fieldset": "Code - HTML",
+            "description": "Code section",
+            "icon": "code",
+            "display": "list",
+            "non-repeat": {
+              "code_text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "preformatted",
+                  "allowTargetBlank": true,
+                  "label": "code"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "code_solidity": {
+            "type": "Slice",
+            "fieldset": "Code - Solidity",
             "description": "Code section",
             "icon": "code",
             "display": "list",
