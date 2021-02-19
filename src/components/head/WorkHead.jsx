@@ -4,8 +4,8 @@ import { Helmet } from 'react-helmet';
 const WorkHead = ({ meta }) => (
   <Helmet
     htmlAttributes={{ lang: 'en' }}
-    title={`Work | Michael Mueller, web developer & financial advisor`}
-    titleTemplate={`%s | Work | Michael Mueller, web developer & financial advisor`}
+    title={`Work | Michael Mueller, web / blockchain & financial advisor`}
+    titleTemplate={`%s | Work | Michael Mueller, web / blockchain & financial advisor`}
     meta={[
       {
         name: `description`,
@@ -13,7 +13,7 @@ const WorkHead = ({ meta }) => (
       },
       {
         property: `og:title`,
-        content: `Work | Michael Mueller, web developer & financial advisor`,
+        content: `Work | Michael Mueller, web / blockchain & financial advisor`,
       },
       {
         property: `og:description`,

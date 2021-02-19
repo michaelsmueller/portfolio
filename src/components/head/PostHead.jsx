@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 const PostHead = ({ post, meta }) => (
   <Helmet
     htmlAttributes={{ lang: 'en' }}
-    title={`${post.post_title.text} | Michael Mueller, web developer & financial advisor`}
+    title={`${post.post_title.text} | Michael Mueller, web / blockchain & financial advisor`}
     titleTemplate={`%s | ${meta.title}`}
     meta={[
       {
@@ -13,7 +13,7 @@ const PostHead = ({ post, meta }) => (
       },
       {
         property: `og:title`,
-        content: `${post.post_title.text} | Michael Mueller, web developer & financial advisor`,
+        content: `${post.post_title.text} | Michael Mueller, web / blockchain & financial advisor`,
       },
       {
         property: `og:description`,

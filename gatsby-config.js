@@ -4,7 +4,7 @@ require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
 
 module.exports = {
   siteMetadata: {
-    title: `Michael Mueller | Web developer & financial advisor`,
+    title: `Michael Mueller | web / blockchain & financial advisor`,
     description: `My work portfolio.`,
     author: `Michael Mueller`,
     siteUrl: `https://michaelmueller.dev`,

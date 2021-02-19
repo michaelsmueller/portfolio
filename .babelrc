@@ -1,11 +1,14 @@
 {
   "presets": ["babel-preset-gatsby"],
   "plugins": [
-    ["prismjs", {
-      "languages": ["javascript", "jsx", "html", "css", "markup"],
-      "plugins": ["show-language"],
-      "theme": "okaidia",
-      "css": true
-    }]
+    [
+      "prismjs",
+      {
+        "languages": ["javascript", "jsx", "html", "css", "markup", "solidity"],
+        "plugins": ["show-language"],
+        "theme": "okaidia",
+        "css": true
+      }
+    ]
   ]
 }
