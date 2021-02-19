@@ -50,8 +50,12 @@ const typeStyles = css`
 
   pre,
   code {
-    font-size: 0.8rem !important;
-    line-height: 1.2rem !important;
+    font-size: 0.7rem !important;
+    line-height: 1.1rem !important;
+  }
+
+  .code-toolbar {
+    margin-bottom: 2em;
   }
 `;
 
